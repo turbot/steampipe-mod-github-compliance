@@ -161,8 +161,7 @@ control "cis_supply_chain_v100_1_1_10" {
 control "cis_supply_chain_v100_1_1_11" {
   title       = "1.1.11 Ensure all open comments are resolved before allowing code change merging"
   description = "Organizations should enforce a 'no open comments' policy before allowing code change merging."
-  sql         = query.default_branch_manual_control.sql
-  # sql         = query.repo_no_open_comments.sql
+  sql         = query.repo_no_open_comments.sql
 
   tags = merge(local.cis_supply_chain_v100_1_1_common_tags, {
     cis                   = "true"
@@ -175,8 +174,7 @@ control "cis_supply_chain_v100_1_1_11" {
 control "cis_supply_chain_v100_1_1_12" {
   title       = "1.1.12 Ensure verification of signed commits for new changes before merging"
   description = "Ensure every commit in a pull request is signed and verified before merging."
-  # sql         = query.default_branch_requires_signed_commits.sql
-  sql = query.default_branch_manual_control.sql
+  sql         = query.default_branch_requires_signed_commits.sql
 
   tags = merge(local.cis_supply_chain_v100_1_1_common_tags, {
     cis                   = "true"
