@@ -51,12 +51,12 @@ control "cis_supply_chain_v100_1_3_2" {
 control "cis_supply_chain_v100_1_3_3" {
   title       = "1.3.3 Ensure minimum number of administrators are set for the organization"
   description = "Ensure the organization has a minimum number of administrators."
-  sql         = query.manual_control.sql
+  sql         = query.organization_minimum_administrators_set.sql
 
   tags = merge(local.cis_supply_chain_v100_1_3_common_tags, {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
-    cis_type              = "manual"
+    cis_type              = "automated"
   })
 
 }
