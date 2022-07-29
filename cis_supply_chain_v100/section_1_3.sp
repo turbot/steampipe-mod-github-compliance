@@ -103,12 +103,12 @@ control "cis_supply_chain_v100_1_3_6" {
 control "cis_supply_chain_v100_1_3_7" {
   title       = "1.3.7 Ensure two administrators are set for each repository"
   description = "Ensure every repository has two users with administrative permissions."
-  sql         = query.manual_control.sql
+  sql         = query.repo_should_have_two_admins.sql
 
   tags = merge(local.cis_supply_chain_v100_1_3_common_tags, {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
-    cis_type              = "manual"
+    cis_type              = "automated"
   })
 
 }

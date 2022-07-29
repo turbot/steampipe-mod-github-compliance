@@ -10,4 +10,5 @@ from
   github_my_repository as r
   left join github_community_profile as p on r.full_name = p.repository_full_name
 where
-  visibility = 'public' and r.fork = false
+  visibility = 'public' 
+  -- and r.fork = false
