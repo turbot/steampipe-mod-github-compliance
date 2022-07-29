@@ -32,12 +32,12 @@ control "cis_supply_chain_v100_1_2_1" {
 control "cis_supply_chain_v100_1_2_2" {
   title       = "1.2.2 Ensure repository creation is limited to specific members"
   description = "Limit the ability to create repositories to trusted users and teams."
-  sql         = query.manual_control.sql
+  sql         = query.org_members_cannot_create_repos.sql
 
   tags = merge(local.cis_supply_chain_v100_1_2_common_tags, {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
-    cis_type              = "manual"
+    cis_type              = "automated"
   })
 
 }
@@ -45,12 +45,12 @@ control "cis_supply_chain_v100_1_2_2" {
 control "cis_supply_chain_v100_1_2_3" {
   title       = "1.2.3 Ensure repository deletion is limited to specific users"
   description = "Ensure only a limited number of trusted users can delete repositories."
-  sql         = query.manual_control.sql
+  sql         = query.repo_deletion_limited_to_3_users.sql
 
   tags = merge(local.cis_supply_chain_v100_1_2_common_tags, {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
-    cis_type              = "manual"
+    cis_type              = "automated"
   })
 
 }
@@ -58,12 +58,12 @@ control "cis_supply_chain_v100_1_2_3" {
 control "cis_supply_chain_v100_1_2_4" {
   title       = "1.2.4 Ensure issue deletion is limited to specific users"
   description = "Ensure only trusted and responsible users can delete issues."
-  sql         = query.manual_control.sql
+  sql         = query.repo_issue_deletion_limited_to_3_users.sql
 
   tags = merge(local.cis_supply_chain_v100_1_2_common_tags, {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
-    cis_type              = "manual"
+    cis_type              = "automated"
   })
 
 }
