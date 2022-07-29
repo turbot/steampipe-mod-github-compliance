@@ -5,7 +5,7 @@ select
     when b.required_status_checks is not null then 'ok'
     else 'alarm'
     end as status,
-    r.full_name || ' default branch ' || r.default_branch || case when(b.required_status_checks is not null) then ' requires ' else ' does not require ' end || 'statuss checks.' as reason,
+    r.full_name || ' default branch ' || r.default_branch || case when(b.required_status_checks is not null) then ' requires ' else ' does not require ' end || 'status checks.' as reason,
   -- Additional Dimensions
     r.full_name
 from

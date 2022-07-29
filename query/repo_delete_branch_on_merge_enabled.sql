@@ -11,4 +11,4 @@ select
 from
   github_my_repository
 -- where
---  fork = false
+    -- r.fork = ${local.include_forks}

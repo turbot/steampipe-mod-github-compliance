@@ -10,10 +10,10 @@ locals {
 
 mod "github_compliance" {
   # hub metadata
-  title       = "CIS Software Supply Chain v1.0.0"
-  description = " #TODO"
-  color       = "#FF9900"
-  # documentation = file("./docs/index.md")
+  title         = "GitHub Compliance"
+  description   = " #TODO"
+  color         = "#FF9900"
+  documentation = file("./docs/index.md")
   # icon          = "/images/mods/turbot/aws-compliance.svg"
   # categories    = ["aws", "cis", "compliance", "pci dss", "public cloud", "security"]
 

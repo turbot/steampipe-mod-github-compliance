@@ -5,7 +5,7 @@ select
   'info' as status,
   'Manual verification required.' as reason,
   -- Additional Dimensions
-full_name || ' default branch ' || default_branch as branch
+full_name
 from
   github_my_repository
 order by visibility

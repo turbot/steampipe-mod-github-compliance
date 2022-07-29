@@ -23,8 +23,8 @@ locals {
 }
 
 benchmark "cis_supply_chain_v100_1" {
-  title = "1 Source Code"
-  # documentation = file("./cis_v130/docs/cis_v130_4.md")
+  title         = "1 Source Code"
+  documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1.md")
   children = [
     benchmark.cis_supply_chain_v100_1_1,
     benchmark.cis_supply_chain_v100_1_2,

@@ -5,7 +5,7 @@ select
     when b.restrictions_apps || b.restrictions_teams || b.restrictions_users is not null then 'ok'
     else 'alarm'
     end as status,
-    r.full_name || ' default branch ' || r.default_branch || case when(b.restrictions_apps || b.restrictions_teams || b.restrictions_users is not null) then ' has restrictions in place for code push and merge.' else ' has no restrictions in place for code push and merge.' end as reason,
+    r.full_name || ' default branch ' || r.default_branch || case when(b.restrictions_apps || b.restrictions_teams || b.restrictions_users is not null) then ' has ' else ' has no ' end || 'restrictions for code push and merge.' as reason,
   -- Additional Dimensions
     r.full_name
 from
