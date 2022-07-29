@@ -1,4 +1,6 @@
-select html_url as resource,
+select 
+  -- Required Columns
+  html_url as resource,
 case 
   when count(c -> 'permissions' ->> 'admin') <= 3 then 'ok' 
   else 'alarm'

@@ -5,7 +5,7 @@ select
     when b.required_pull_request_reviews is not null and (b.required_pull_request_reviews -> 'dismissal_restrictions') is not null  then 'ok'
     else 'alarm'
     end as status,
-    r.full_name || ' default branch ' || r.default_branch || case when(b.required_pull_request_reviews is not null and (b.required_pull_request_reviews -> 'dismissal_restrictions') is not null) then ' has restrictions in place for code review dismissal.' else ' has no restrictions in place for code review dismissal.' end as reason,
+    r.full_name || ' default branch ' || r.default_branch || case when(b.required_pull_request_reviews is not null and (b.required_pull_request_reviews -> 'dismissal_restrictions') is not null) then ' has ' else ' does not have ' end || 'code change review dismissal restrictions.' as reason,
   -- Additional Dimensions
     r.full_name
 from

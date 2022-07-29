@@ -19,7 +19,8 @@ benchmark "cis_supply_chain_v100_1_2" {
 control "cis_supply_chain_v100_1_2_1" {
   title       = "1.2.1 Ensure all public repositories contain a SECURITY.md file"
   description = "A SECURITY.md file is a security policy file that offers instruction on reporting security vulnerabilities in a project. When someone creates an issue within a specific project, a link to the SECURITY.md file will subsequently be shown."
-  sql         = query.public_repo_security_added.sql
+  # sql         = query.public_repo_security_added.sql
+  sql = query.repo_manual_control.sql
 
   tags = merge(local.cis_supply_chain_v100_1_2_common_tags, {
     cis                   = "true"
@@ -71,7 +72,7 @@ control "cis_supply_chain_v100_1_2_4" {
 control "cis_supply_chain_v100_1_2_5" {
   title       = "1.2.5 Ensure all copies (forks) of code are tracked and accounted for"
   description = "Track every fork of code and ensure it is accounted for."
-  sql         = query.manual_control.sql
+  sql         = query.repo_manual_control.sql
 
   tags = merge(local.cis_supply_chain_v100_1_2_common_tags, {
     cis                   = "true"
@@ -84,7 +85,7 @@ control "cis_supply_chain_v100_1_2_5" {
 control "cis_supply_chain_v100_1_2_6" {
   title       = "1.2.6 Ensure all code projects are tracked for changes in visibility status"
   description = "Ensure every change in visibility of projects is tracked."
-  sql         = query.manual_control.sql
+  sql         = query.repo_manual_control.sql
 
   tags = merge(local.cis_supply_chain_v100_1_2_common_tags, {
     cis                   = "true"
@@ -97,7 +98,7 @@ control "cis_supply_chain_v100_1_2_6" {
 control "cis_supply_chain_v100_1_2_7" {
   title       = "1.2.7 Ensure inactive repositories are reviewed and archived periodically"
   description = "Track inactive repositories and remove them periodically."
-  sql         = query.manual_control.sql
+  sql         = query.repo_manual_control.sql
 
   tags = merge(local.cis_supply_chain_v100_1_2_common_tags, {
     cis                   = "true"

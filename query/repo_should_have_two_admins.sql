@@ -1,4 +1,6 @@
-select html_url as resource,
+select 
+  -- Required Columns
+  html_url as resource,
 case 
   when count(c -> 'permissions' ->> 'admin') >= 2 then 'ok' 
   else 'alarm'
@@ -9,4 +11,3 @@ case
 from
   github_my_repository, jsonb_array_elements(collaborators) as c
   where (c -> 'permissions' ->> 'admin')::bool group by html_url, full_name
-  

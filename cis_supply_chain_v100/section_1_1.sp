@@ -96,12 +96,12 @@ control "cis_supply_chain_v100_1_1_5" {
 control "cis_supply_chain_v100_1_1_6" {
   title       = "1.1.6 Ensure code owners are set for extra sensitive code or configuration"
   description = "Code owners are trusted users that are responsible for reviewing and managing an important piece of code or configuration. An organization is advised to set code owners for every extremely sensitive code or configuration."
-  sql         = query.default_branch_manual_control.sql
+  sql         = query.default_branch_requires_code_owners_review.sql
 
   tags = merge(local.cis_supply_chain_v100_1_1_common_tags, {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
-    cis_type              = "manual"
+    cis_type              = "automated"
   })
 
 }
@@ -109,12 +109,12 @@ control "cis_supply_chain_v100_1_1_6" {
 control "cis_supply_chain_v100_1_1_7" {
   title       = "1.1.7 Ensure code owner's review is required when a change affects owned code"
   description = "Ensure trusted code owners are required to review and approve any code change proposal made to their respective owned areas in the code base."
-  sql         = query.default_branch_require_code_owner_reviews.sql
+  sql         = query.default_branch_manual_control.sql
 
   tags = merge(local.cis_supply_chain_v100_1_1_common_tags, {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
-    cis_type              = "automated"
+    cis_type              = "manual"
   })
 
 }
@@ -148,7 +148,7 @@ control "cis_supply_chain_v100_1_1_9" {
 control "cis_supply_chain_v100_1_1_10" {
   title       = "1.1.10 Ensure open Git branches are up to date before they can be merged into code base"
   description = "Organizations should make sure each suggested code change is in full sync with the existing state of its origin code repository before allowing merging."
-  sql         = query.branches_are_upto_date_before_merge.sql
+  sql         = query.repo_open_branches_are_upto_date_before_merge.sql
 
   tags = merge(local.cis_supply_chain_v100_1_1_common_tags, {
     cis                   = "true"
@@ -162,11 +162,12 @@ control "cis_supply_chain_v100_1_1_11" {
   title       = "1.1.11 Ensure all open comments are resolved before allowing code change merging"
   description = "Organizations should enforce a 'no open comments' policy before allowing code change merging."
   sql         = query.default_branch_manual_control.sql
+  # sql         = query.repo_no_open_comments.sql
 
   tags = merge(local.cis_supply_chain_v100_1_1_common_tags, {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
-    cis_type              = "manual"
+    cis_type              = "automated"
   })
 
 }
@@ -174,7 +175,8 @@ control "cis_supply_chain_v100_1_1_11" {
 control "cis_supply_chain_v100_1_1_12" {
   title       = "1.1.12 Ensure verification of signed commits for new changes before merging"
   description = "Ensure every commit in a pull request is signed and verified before merging."
-  sql         = query.commits_are_signed_and_verified_before_merging.sql
+  # sql         = query.default_branch_requires_signed_commits.sql
+  sql = query.default_branch_manual_control.sql
 
   tags = merge(local.cis_supply_chain_v100_1_1_common_tags, {
     cis                   = "true"
@@ -187,12 +189,12 @@ control "cis_supply_chain_v100_1_1_12" {
 control "cis_supply_chain_v100_1_1_13" {
   title       = "1.1.13 Ensure linear history is required"
   description = "Linear history is the name for Git history where all commits are listed in chronological order, one after another. Such history exists if a pull request is merged either by rebase merge (reorders the commits history) or squash merge (squashes all commits to one). Ensure that linear history is required by requiring the use of rebase or squash merge when merging a pull request."
-  sql         = query.default_branch_manual_control.sql
+  sql         = query.repo_linear_history_enabled.sql
 
   tags = merge(local.cis_supply_chain_v100_1_1_common_tags, {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
-    cis_type              = "manual"
+    cis_type              = "automated"
   })
 
 }
