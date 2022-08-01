@@ -8,4 +8,4 @@ select
 full_name || ' default branch ' || default_branch as branch
 from
   github_my_repository
-order by visibility
+order by visibility;

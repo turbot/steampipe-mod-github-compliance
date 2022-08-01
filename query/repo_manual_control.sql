@@ -8,4 +8,4 @@ select
 full_name
 from
   github_my_repository
-order by visibility
+order by visibility;

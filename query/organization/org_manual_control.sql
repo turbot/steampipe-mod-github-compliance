@@ -6,4 +6,4 @@ select
   -- Additional Dimensions
 login
 from
-  github_organization
+  github_organization;
