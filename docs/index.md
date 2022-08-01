@@ -18,23 +18,17 @@ brew install steampipe
 Install the AWS plugin with [Steampipe](https://steampipe.io):
 
 ```sh
-steampipe plugin install aws
+steampipe plugin install github
 ```
 
 Clone:
 
 ```sh
-git clone https://github.com/turbot/steampipe-mod-aws-compliance.git
-cd steampipe-mod-aws-compliance
+git clone https://github.com/turbot/steampipe-mod-github-compliance.git
+cd steampipe-mod-github-compliance
 ```
 
 ### Usage
-
-Before running any benchmarks, it's recommended to generate your AWS credential report:
-
-```sh
-aws iam generate-credential-report
-```
 
 Start your dashboard server to get started:
 
@@ -58,13 +52,13 @@ steampipe check all
 Run a single benchmark:
 
 ```sh
-steampipe check benchmark.cis_v140
+steampipe check benchmark.cis_supply_chain_v100
 ```
 
 Run a specific control:
 
 ```sh
-steampipe check control.cis_v140_2_1_1
+steampipe check control.cis_supply_chain_v100_1_1_1
 ```
 
 Different output formats are also available, for more information please see
@@ -72,7 +66,7 @@ Different output formats are also available, for more information please see
 
 ### Credentials
 
-This mod uses the credentials configured in the [Steampipe AWS plugin](https://hub.steampipe.io/plugins/turbot/aws).
+This mod uses the credentials configured in the [Steampipe GitHub plugin](https://hub.steampipe.io/plugins/turbot/github).
 
 ### Configuration
 
@@ -89,4 +83,4 @@ Please see the [contribution guidelines](https://github.com/turbot/steampipe/blo
 Want to help but not sure where to start? Pick up one of the `help wanted` issues:
 
 - [Steampipe](https://github.com/turbot/steampipe/labels/help%20wanted)
-- [AWS Compliance Mod](https://github.com/turbot/steampipe-mod-aws-compliance/labels/help%20wanted)
+- [GitHub Compliance Mod](https://github.com/turbot/steampipe-mod-github-compliance/labels/help%20wanted)

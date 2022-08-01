@@ -4,24 +4,23 @@ locals {
     category = "Compliance"
     plugin   = "github"
     service  = "GitHub"
-    # include_forks = "false"
   }
 }
 
 mod "github_compliance" {
   # hub metadata
   title         = "GitHub Compliance"
-  description   = " #TODO"
+  description   = "Run individual configuration, compliance and security controls or full compliance benchmarks for GitHub across your repositories and organizations using Steampipe."
   color         = "#FF9900"
   documentation = file("./docs/index.md")
-  # icon          = "/images/mods/turbot/aws-compliance.svg"
-  # categories    = ["aws", "cis", "compliance", "pci dss", "public cloud", "security"]
+  # icon          = "/images/mods/turbot/github-compliance.svg"
+  categories = ["github", "cis", "compliance", "security"]
 
-  # opengraph {
-  #   title       = "Steampipe Mod for GitHub Compliance"
-  #   description = " #TODO"
-  #   # image       = "/images/mods/turbot/aws-compliance-social-graphic.png"
-  # }
+  opengraph {
+    title       = "Steampipe Mod for GitHub Compliance"
+    description = "Run individual configuration, compliance and security controls or full compliance benchmarks for GitHub across your repositories and organizations using Steampipe."
+    #   # image       = "/images/mods/turbot/github-compliance-social-graphic.png"
+  }
 
   require {
     plugin "github" {
