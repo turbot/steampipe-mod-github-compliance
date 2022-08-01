@@ -9,7 +9,7 @@ select
   -- Additional Dimensions
   login
 from
-  github_my_organization
+  github_my_organization;
 
 
 
