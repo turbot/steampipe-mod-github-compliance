@@ -16,7 +16,13 @@ pipelines as (
   from
     github_workflow
   where
-    repository_full_name in (select full_name from my_repositories)
+    repository_full_name in
+    (
+      select
+        full_name
+      from
+        my_repositories
+    )
 ),
 bulid_jobs as (
   select
@@ -26,7 +32,8 @@ bulid_jobs as (
   from
     pipelines as p,
     jsonb_array_elements(pipeline -> 'jobs') as j
-  where (j -> 'metadata' -> 'build')::bool
+  where
+    (j -> 'metadata' -> 'build')::bool
 )
 select distinct
   mr.full_name as resource,
@@ -35,11 +42,12 @@ select distinct
     else 'alarm'
   end as status,
   case
-    when (select count(*) from bulid_jobs where repository_full_name = mr.full_name group by repository_full_name) > 0 then 'All build steps are defined as code.'
-    else 'No build steps defined as code.'
+    when (select count(*) from bulid_jobs where repository_full_name = mr.full_name group by repository_full_name) > 0
+      then 'All build steps are defined as code.'
+      else 'No build steps defined as code.'
   end as reason
 from
   my_repositories as mr
-  left join pipelines as p
+  left join
+    pipelines as p
     on mr.full_name = p.repository_full_name;
-
