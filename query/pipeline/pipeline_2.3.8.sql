@@ -1,5 +1,5 @@
 -- pgFormatter-ignore
--- section 2.3.7 using
+-- section 2.3.8 using
 with my_repositories as (
   select
     default_branch,
@@ -33,11 +33,20 @@ vulnerability_task_repos as (
     jsonb_array_elements(pipeline -> 'jobs') as job,
     jsonb_array_elements(job -> 'steps') as step
   where
-    step ->> 'type' = 'task'
+    (step ->> 'type' = 'task'
     and (step -> 'task' ->> 'name')::text in (
       'argonsecurity/scanner-action',
-      'aquasecurity/trivy-action'
-    )
+      'aquasecurity/trivy-action',
+      'zricethezav/gitleaks-action',
+      'ShiftLeftSecurity/scan-action'
+    )) or
+    (step ->> 'type' = 'shell'
+    and ((step -> 'shell' ->> 'script')::text like glob('spectral.* scan') or
+      (step -> 'shell' ->> 'script')::text like glob('git secrets --scan') or
+      (step -> 'shell' ->> 'script')::text like glob('whispers') or
+      (step -> 'shell' ->> 'script')::text like glob('docker run.* abhartiya/tools_gitallsecrets') or
+      (step -> 'shell' ->> 'script')::text like glob('detect-secrets.* scan')
+    ))
 )
 select
   mr.full_name as resource,
@@ -46,8 +55,8 @@ select
     else 'ok'
   end as status,
   case
-    when vtr.repository_full_name is null then 'Automated vulnerabilities scanning is not set.'
-    else 'Automated vulnerabilities scanning is set.'
+    when vtr.repository_full_name is null then 'Scanners are not set to identify and prevent sensitive data in pipeline files.'
+    else 'Scanners are set to identify and prevent sensitive data in pipeline files.'
   end as reason
 from
   my_repositories as mr
