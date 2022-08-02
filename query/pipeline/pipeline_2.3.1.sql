@@ -25,9 +25,7 @@ pipelines as (
     )
 ),
 bulid_jobs as (
-  select
-    p.name as pipeline_name,
-    j -> 'name' as job_name,
+  select distinct
     p.repository_full_name
   from
     pipelines as p,
@@ -38,16 +36,15 @@ bulid_jobs as (
 select distinct
   mr.full_name as resource,
   case
-    when (select count(*) from bulid_jobs where repository_full_name = mr.full_name group by repository_full_name) > 0 then 'ok'
-    else 'alarm'
+    when bj.repository_full_name is null then 'alarm'
+    else 'ok'
   end as status,
   case
-    when (select count(*) from bulid_jobs where repository_full_name = mr.full_name group by repository_full_name) > 0
-      then 'All build steps are defined as code.'
-      else 'No build steps defined as code.'
+    when bj.repository_full_name is null then 'No build steps defined as code.'
+      else 'All build steps are defined as code.'
   end as reason
 from
   my_repositories as mr
   left join
-    pipelines as p
-    on mr.full_name = p.repository_full_name;
+    bulid_jobs as bj
+    on mr.full_name = bj.repository_full_name;
