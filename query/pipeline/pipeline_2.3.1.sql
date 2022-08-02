@@ -7,11 +7,6 @@ with my_repositories as (
     github_my_repository
   order by
     full_name
-  -- from
-    -- github_repository
-  -- where
-  -- full_name = 'turbot/steampipe-plugin-aws'
-  -- full_name = 'LalitTurbot/detect-secrets'
 ),
 pipelines as (
   select
@@ -31,11 +26,9 @@ bulid_jobs as (
   from
     pipelines as p,
     jsonb_array_elements(pipeline -> 'jobs') as j
-  where
-    (j -> 'metadata' -> 'build')::bool
+  where (j -> 'metadata' -> 'build')::bool
 )
-select
-  distinct
+select distinct
   mr.full_name as resource,
   case
     when (select count(*) from bulid_jobs where repository_full_name = mr.full_name group by repository_full_name) > 0 then 'ok'
@@ -48,6 +41,5 @@ select
 from
   my_repositories as mr
   left join pipelines as p
-on
-  mr.full_name = p.repository_full_name;
+    on mr.full_name = p.repository_full_name;
 
