@@ -470,6 +470,6 @@ control "cis_supply_chain_v100_2_4_6" {
   tags = merge(local.cis_supply_chain_v100_2_2_common_tags, {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
-    cis_type              = "manual"
+    cis_type              = "automated"
   })
 }
