@@ -12,4 +12,4 @@ from
     github_my_repository as r
     left join github_branch_protection as b on r.full_name = b.repository_full_name and r.default_branch = b.name;
 -- where
-    -- r.fork = ${local.include_forks}
+--     r.fork = 'false'
