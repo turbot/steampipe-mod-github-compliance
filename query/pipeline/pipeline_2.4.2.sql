@@ -1,17 +1,13 @@
 -- pgFormatter-ignore
--- section 2.3.7 using
+-- section 2.4.6 using
 with my_repositories as (
   select
     default_branch,
     full_name
   from
-    github_repository
-  where
-    full_name = 'new-testing-org/test-public-repo'
-  -- from
-  --   github_my_repository
-  -- order by
-  --   full_name
+    github_my_repository
+  order by
+    full_name
 ),
 pipelines as (
   select
@@ -31,8 +27,8 @@ pipelines as (
 ),
 unpinned_task_count as (
   select
-    COUNT(*) FILTER (WHERE step ->> 'type' = 'task' and (step -> 'task' ->> 'version_type')::text != 'commit' ) as unpinned_task_count,
-    COUNT(*) FILTER (WHERE step ->> 'type' = 'task' and (step -> 'task' ->> 'version_type')::text = 'commit' ) as pinned_task_count,
+    count(*) filter (where step ->> 'type' = 'task' and (step -> 'task' ->> 'version_type')::text != 'commit' ) as unpinned_task_count,
+    count(*) filter (where step ->> 'type' = 'task' and (step -> 'task' ->> 'version_type')::text = 'commit' ) as pinned_task_count,
     p.repository_full_name
   from
     pipelines as p,
@@ -57,4 +53,3 @@ from
   left join
     unpinned_task_count as utc
     on mr.full_name = utc.repository_full_name;
-
