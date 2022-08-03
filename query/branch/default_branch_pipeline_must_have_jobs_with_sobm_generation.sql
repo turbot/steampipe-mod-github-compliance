@@ -1,5 +1,4 @@
--- section 2.4.6 using
-with my_repositories as (
+with repositories as (
   select
     full_name
   from
@@ -21,7 +20,7 @@ pipelines as (
       select
         full_name
       from
-        my_repositories
+        repositories
     )
 ),
 build_jobs_sbom_details as (
@@ -91,7 +90,7 @@ pipeline_with_sbom_job_details as (
     repository_full_name
 )
 select
-  mr.full_name as resource,
+  r.full_name as resource,
   case
     when ps.pipeline_without_sbom_jobs > 0 then 'alarm'
     when ps.repository_full_name is null then 'info'
@@ -102,9 +101,8 @@ select
     when ps.repository_full_name is null then 'No pipelines in the repo.'
     else 'All pipeline(s) contain a build job with SBOM generation.'
   end as reason,
-  mr.full_name
+  r.full_name
 from
-  my_repositories as mr
+  repositories as r
   left join
-    pipeline_with_sbom_job_details as ps
-    on mr.full_name = ps.repository_full_name;
+    pipeline_with_sbom_job_details as ps on r.full_name = ps.repository_full_name;
