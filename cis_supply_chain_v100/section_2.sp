@@ -362,20 +362,20 @@ control "cis_supply_chain_v100_2_3_7" {
   tags = merge(local.cis_supply_chain_v100_2_2_common_tags, {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
-    cis_type              = "manual"
+    cis_type              = "automated"
   })
 }
 
 control "cis_supply_chain_v100_2_3_8" {
   title         = "2.3.8 Ensure scanners are in place to identify and prevent sensitive data in pipeline files"
   description   = "Detect and prevent sensitive data, such as confidential ID numbers, passwords, etc., inpipelines."
-  sql           = query.to_do_delete_me.sql
+  sql           = query.default_branch_pipelines_scanners_set_to_prevent_sensitive_data.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_2_3_8.md")
 
   tags = merge(local.cis_supply_chain_v100_2_2_common_tags, {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
-    cis_type              = "manual"
+    cis_type              = "automated"
   })
 }
 
