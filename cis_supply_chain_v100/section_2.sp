@@ -82,7 +82,7 @@ control "cis_supply_chain_v100_2_1_2" {
 control "cis_supply_chain_v100_2_1_3" {
   title         = "2.1.3 Ensure the build environment is logged"
   description   = "Keep build logs of the build environment detailing configuration and all activity within it. Also, consider storing them in a centralized organizational log store."
-  sql           = query.to_do_delete_me.sql
+  sql           = query.repo_manual_control.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_2_1_3.md")
 
   tags = merge(local.cis_supply_chain_v100_2_1_common_tags, {
@@ -96,7 +96,7 @@ control "cis_supply_chain_v100_2_1_3" {
 control "cis_supply_chain_v100_2_1_4" {
   title         = "2.1.4 Ensure the creation of the build environment is automated"
   description   = "Automate the creation of the build environment."
-  sql           = query.to_do_delete_me.sql
+  sql           = query.repo_manual_control.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_2_1_4.md")
 
   tags = merge(local.cis_supply_chain_v100_2_1_common_tags, {
@@ -110,7 +110,7 @@ control "cis_supply_chain_v100_2_1_4" {
 control "cis_supply_chain_v100_2_1_5" {
   title         = "2.1.5 Ensure access to build environments is limited"
   description   = "Restrict access to the build environment (orchestrator, pipeline executor, their environment, etc.) to trusted and qualified users only."
-  sql           = query.to_do_delete_me.sql
+  sql           = query.repo_manual_control.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_2_1_5.md")
 
   tags = merge(local.cis_supply_chain_v100_2_1_common_tags, {
