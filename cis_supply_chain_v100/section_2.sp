@@ -278,7 +278,7 @@ benchmark "cis_supply_chain_v100_2_3" {
 control "cis_supply_chain_v100_2_3_1" {
   title         = "2.3.1 Ensure all build steps are defined as code"
   description   = "Use pipeline as code for build pipelines and their defined steps."
-  sql           = query.to_do_delete_me.sql
+  sql           = query.default_branch_all_build_steps_as_code.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_2_3_1.md")
 
   tags = merge(local.cis_supply_chain_v100_2_2_common_tags, {

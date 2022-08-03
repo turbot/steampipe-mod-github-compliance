@@ -1,7 +1,5 @@
--- pgFormatter-ignore
-with my_repositories as (
+with repositories as (
   select
-    default_branch,
     full_name
   from
     github_my_repository
@@ -16,13 +14,7 @@ pipelines as (
   from
     github_workflow
   where
-    repository_full_name in
-    (
-      select
-        full_name
-      from
-        my_repositories
-    )
+    repository_full_name in(select full_name from repositories)
 ),
 bulid_jobs as (
   select distinct
@@ -34,17 +26,18 @@ bulid_jobs as (
     (j -> 'metadata' -> 'build')::bool
 )
 select distinct
-  mr.full_name as resource,
+  r.full_name as resource,
   case
-    when bj.repository_full_name is null then 'alarm'
+    when j.repository_full_name is null then 'alarm'
     else 'ok'
   end as status,
   case
-    when bj.repository_full_name is null then 'No build steps defined as code.'
+    when j.repository_full_name is null then 'No build steps defined as code.'
       else 'All build steps are defined as code.'
-  end as reason
+  end as reason,
+  r.full_name
 from
-  my_repositories as mr
+  my_repositories as r
   left join
-    bulid_jobs as bj
-    on mr.full_name = bj.repository_full_name;
+    bulid_jobs as j
+    on r.full_name = j.repository_full_name;
