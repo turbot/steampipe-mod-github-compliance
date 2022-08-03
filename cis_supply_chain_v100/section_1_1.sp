@@ -31,7 +31,7 @@ benchmark "cis_supply_chain_v100_1_1" {
 control "cis_supply_chain_v100_1_1_1" {
   title         = "1.1.1 Ensure any changes to code are tracked in a version control platform"
   description   = "Manage all code projects in a version control platform."
-  sql           = query.default_branch_manual_control.sql
+  sql           = query.branch_manual_control.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_1_1.md")
 
   tags = merge(local.cis_supply_chain_v100_1_1_common_tags, {
@@ -45,7 +45,7 @@ control "cis_supply_chain_v100_1_1_1" {
 control "cis_supply_chain_v100_1_1_2" {
   title         = "1.1.2 Ensure any change to code can be traced back to its associated task"
   description   = "Use a task management system to trace any code back to its associated task."
-  sql           = query.default_branch_manual_control.sql
+  sql           = query.branch_manual_control.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_1_2.md")
 
   tags = merge(local.cis_supply_chain_v100_1_1_common_tags, {
@@ -115,7 +115,7 @@ control "cis_supply_chain_v100_1_1_6" {
 control "cis_supply_chain_v100_1_1_7" {
   title         = "1.1.7 Ensure code owner's review is required when a change affects owned code"
   description   = "Ensure trusted code owners are required to review and approve any code change proposal made to their respective owned areas in the code base."
-  sql           = query.default_branch_manual_control.sql
+  sql           = query.branch_manual_control.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_1_7.md")
 
   tags = merge(local.cis_supply_chain_v100_1_1_common_tags, {
@@ -269,7 +269,7 @@ control "cis_supply_chain_v100_1_1_17" {
 control "cis_supply_chain_v100_1_1_18" {
   title         = "1.1.18 Ensure any merging of code is automatically scanned for risks"
   description   = "Ensure that every pull request is required to be scanned for risks."
-  sql           = query.default_branch_manual_control.sql
+  sql           = query.branch_manual_control.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_1_18.md")
 
   tags = merge(local.cis_supply_chain_v100_1_1_common_tags, {
@@ -283,7 +283,7 @@ control "cis_supply_chain_v100_1_1_18" {
 control "cis_supply_chain_v100_1_1_19" {
   title         = "1.1.19 Ensure any changes to branch protection rules are audited"
   description   = "Ensure that changes in the branch protection rules are audited."
-  sql           = query.default_branch_manual_control.sql
+  sql           = query.branch_manual_control.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_1_19.md")
 
   tags = merge(local.cis_supply_chain_v100_1_1_common_tags, {

@@ -50,6 +50,7 @@ benchmark "cis_supply_chain_v100_2_1" {
     type = "Benchmark"
   })
 }
+
 control "cis_supply_chain_v100_2_1_1" {
   title         = "2.1.1 Ensure each pipeline has a single responsibility"
   description   = "Ensure each pipeline has a single responsibility in the build process."
