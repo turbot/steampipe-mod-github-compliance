@@ -8,4 +8,5 @@ select
 full_name
 from
   github_my_repository
+where fork = 'false'
 order by visibility;
