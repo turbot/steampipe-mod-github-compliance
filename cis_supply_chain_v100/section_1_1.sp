@@ -255,7 +255,7 @@ control "cis_supply_chain_v100_1_1_16" {
 control "cis_supply_chain_v100_1_1_17" {
   title         = "1.1.17 Ensure branch deletions are denied"
   description   = "Ensure that users with only push access are incapable of deleting a protected branch."
-  sql           = query.default_branch_blocks_deletion.sql
+  sql           = query.branch_default_setting_block_deletion.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_1_17.md")
 
   tags = merge(local.cis_supply_chain_v100_1_1_common_tags, {
