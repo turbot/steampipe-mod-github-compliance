@@ -356,7 +356,7 @@ control "cis_supply_chain_v100_2_3_6" {
 control "cis_supply_chain_v100_2_3_7" {
   title         = "2.3.7 Ensure pipelines are automatically scanned for vulnerabilities"
   description   = "Scan pipelines for vulnerabilities. It is recommended that this be implemented automatically."
-  sql           = query.to_do_delete_me.sql
+  sql           = query.default_branch_pipelines_scan_for_vulnerabilities.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_2_3_7.md")
 
   tags = merge(local.cis_supply_chain_v100_2_2_common_tags, {

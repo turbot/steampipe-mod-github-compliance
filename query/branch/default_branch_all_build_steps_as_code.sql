@@ -37,7 +37,7 @@ select distinct
   end as reason,
   r.full_name
 from
-  my_repositories as r
+  repositories as r
   left join
     bulid_jobs as j
-    on r.full_name = j.repository_full_name;
+    on r.full_name = j.repository_full_name

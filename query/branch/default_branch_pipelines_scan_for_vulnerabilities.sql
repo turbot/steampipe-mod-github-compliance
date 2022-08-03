@@ -1,6 +1,4 @@
--- pgFormatter-ignore
--- section 2.3.7 using
-with my_repositories as (
+with repositories as (
   select
     default_branch,
     full_name
@@ -17,13 +15,7 @@ pipelines as (
   from
     github_workflow
   where
-    repository_full_name in
-    (
-      select
-        full_name
-      from
-        my_repositories
-    )
+    repository_full_name in (select full_name from repositories)
 ),
 vulnerability_task_repos as (
   select distinct
@@ -40,18 +32,19 @@ vulnerability_task_repos as (
     )
 )
 select
-  mr.full_name as resource,
+  r.full_name as resource,
   case
-    when vtr.repository_full_name is null then 'alarm'
+    when v.repository_full_name is null then 'alarm'
     else 'ok'
   end as status,
   case
-    when vtr.repository_full_name is null then 'Automated vulnerabilities scanning is not set.'
+    when v.repository_full_name is null then 'Automated vulnerabilities scanning is not set.'
     else 'Automated vulnerabilities scanning is set.'
-  end as reason
+  end as reason,
+  r.full_name
 from
-  my_repositories as mr
+  repositories as r
   left join
-    vulnerability_task_repos as vtr
-    on mr.full_name = vtr.repository_full_name;
+    vulnerability_task_repos as v
+    on r.full_name = v.repository_full_name;
 
