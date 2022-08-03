@@ -1,8 +1,5 @@
--- pgFormatter-ignore
--- section 2.4.6 using
-with my_repositories as (
+with repositories as (
   select
-    default_branch,
     full_name
   from
     github_my_repository
@@ -17,13 +14,7 @@ pipelines as (
   from
     github_workflow
   where
-    repository_full_name in
-    (
-      select
-        full_name
-      from
-        my_repositories
-    )
+    repository_full_name in (select full_name from repositories)
 ),
 unpinned_task_count as (
   select
@@ -38,18 +29,19 @@ unpinned_task_count as (
     repository_full_name
 )
 select
-  mr.full_name as resource,
+  r.full_name as resource,
   case
-    when utc.unpinned_task_count > 0 then 'alarm'
+    when u.unpinned_task_count > 0 then 'alarm'
     else 'ok'
   end as status,
   case
-    when utc.unpinned_task_count > 0 then unpinned_task_count::text || ' task(s) are not pinned.'
-    when utc.repository_full_name is null then 'no build task(s) in the repo.'
+    when u.unpinned_task_count > 0 then unpinned_task_count::text || ' task(s) are not pinned.'
+    when u.repository_full_name is null then 'no build task(s) in the repo.'
     else 'All task(s) are pinned.'
-  end as reason
+  end as reason,
+  r.full_name
 from
-  my_repositories as mr
+  repositories as r
   left join
-    unpinned_task_count as utc
-    on mr.full_name = utc.repository_full_name;
+    unpinned_task_count as u
+    on r.full_name = u.repository_full_name;

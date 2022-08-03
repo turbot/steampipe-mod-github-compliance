@@ -412,13 +412,13 @@ control "cis_supply_chain_v100_2_4_1" {
 control "cis_supply_chain_v100_2_4_2" {
   title         = "2.4.2 Ensure all external dependencies used in the build process are locked"
   description   = "External dependencies may be public packages needed in the pipeline, or perhaps the public image being used for the build worker. Lock these external dependencies in every build pipeline."
-  sql           = query.to_do_delete_me.sql
+  sql           = query.default_branch_pipeline_locks_external_dependencies_for_build_process.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_2_4_2.md")
 
   tags = merge(local.cis_supply_chain_v100_2_2_common_tags, {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
-    cis_type              = "manual"
+    cis_type              = "automated"
   })
 }
 
