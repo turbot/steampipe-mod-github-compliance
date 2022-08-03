@@ -284,20 +284,7 @@ control "cis_supply_chain_v100_2_3_1" {
   tags = merge(local.cis_supply_chain_v100_2_2_common_tags, {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
-    cis_type              = "manual"
-  })
-}
-
-control "cis_supply_chain_v100_2_3_1" {
-  title         = "2.3.1 Ensure all build steps are defined as code"
-  description   = "Use pipeline as code for build pipelines and their defined steps."
-  sql           = query.to_do_delete_me.sql
-  documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_2_3_1.md")
-
-  tags = merge(local.cis_supply_chain_v100_2_2_common_tags, {
-    cis                   = "true"
-    cis_supply_chain_v100 = "true"
-    cis_type              = "manual"
+    cis_type              = "automated"
   })
 }
 
