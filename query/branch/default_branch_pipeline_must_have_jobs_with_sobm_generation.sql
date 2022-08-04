@@ -90,6 +90,7 @@ pipeline_with_sbom_job_details as (
     repository_full_name
 )
 select
+  -- Required Columns
   r.full_name as resource,
   case
     when ps.pipeline_without_sbom_jobs > 0 then 'alarm'
@@ -101,6 +102,7 @@ select
     when ps.repository_full_name is null then 'No pipelines in the repo.'
     else 'All pipeline(s) contain a build job with SBOM generation.'
   end as reason,
+  -- Additional Dimensions
   r.full_name
 from
   repositories as r

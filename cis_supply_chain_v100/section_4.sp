@@ -158,7 +158,7 @@ control "cis_supply_chain_v100_4_2_4" {
 control "cis_supply_chain_v100_4_2_5" {
   title         = "4.2.5 Ensure anonymous access to artifacts is revoked"
   description   = "Disable anonymous access to artifacts."
-  sql           = query.to_do_delete_me.sql
+  sql           = query.repo_manual_control.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_4_2_5.md")
 
   tags = merge(local.cis_supply_chain_v100_4_2_common_tags, {

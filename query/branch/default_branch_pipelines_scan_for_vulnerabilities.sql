@@ -32,6 +32,7 @@ vulnerability_task_repos as (
     )
 )
 select
+  -- Required Columns
   r.full_name as resource,
   case
     when v.repository_full_name is null then 'alarm'
@@ -41,8 +42,8 @@ select
     when v.repository_full_name is null then 'Automated vulnerabilities scanning is not set.'
     else 'Automated vulnerabilities scanning is set.'
   end as reason,
+  -- Additional Dimensions
   r.full_name
 from
   repositories as r
   left join vulnerability_task_repos as v on r.full_name = v.repository_full_name;
-

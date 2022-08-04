@@ -330,7 +330,7 @@ control "cis_supply_chain_v100_2_3_4" {
 control "cis_supply_chain_v100_2_3_5" {
   title         = "2.3.5 Ensure access to build process triggering is minimized"
   description   = "Restrict access to pipeline triggers."
-  sql           = query.to_do_delete_me.sql
+  sql           = query.org_strict_default_permission.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_2_3_5.md")
 
   tags = merge(local.cis_supply_chain_v100_2_2_common_tags, {

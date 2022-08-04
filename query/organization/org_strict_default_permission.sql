@@ -10,6 +10,3 @@ select
   login
 from
   github_my_organization;
-
-
-

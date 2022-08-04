@@ -40,6 +40,7 @@ vulnerability_scanner_repos as (
     ))
 )
 select
+  -- Required Columns
   r.full_name as resource,
   case
     when v.repository_full_name is null then 'alarm'
@@ -49,8 +50,8 @@ select
     when v.repository_full_name is null then 'Scanners are not set to identify and prevent sensitive data in pipeline files.'
     else 'Scanners are set to identify and prevent sensitive data in pipeline files.'
   end as reason,
+  -- Additional Dimensions
   r.full_name
 from
   repositories as r
   left join vulnerability_scanner_repos as v on r.full_name = v.repository_full_name;
-

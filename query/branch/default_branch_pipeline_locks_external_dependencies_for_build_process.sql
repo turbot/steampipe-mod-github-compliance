@@ -29,6 +29,7 @@ unpinned_task_count as (
     repository_full_name
 )
 select
+  -- Required Columns
   r.full_name as resource,
   case
     when u.unpinned_task_count > 0 then 'alarm'
@@ -39,6 +40,7 @@ select
     when u.repository_full_name is null then 'no build task(s) in the repo.'
     else 'All task(s) are pinned.'
   end as reason,
+  -- Additional Dimensions
   r.full_name
 from
   repositories as r

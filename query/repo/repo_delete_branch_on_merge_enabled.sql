@@ -10,5 +10,3 @@ select
   full_name
 from
   github_my_repository;
--- where
-    -- r.fork = ${local.include_forks}

@@ -14,6 +14,7 @@ with hooks_info as (
     jsonb_array_elements(hooks) h
 )
 select
+  -- Required Columns
   hook -> 'id' as resource,
   case
     when (hook ->> 'active' = 'true'
@@ -28,6 +29,8 @@ select
       or hook -> 'config' ->> 'secret' is null
       or hook -> 'config' ->> 'url' not like '%https:%')) then (hook ->> 'id') || ' is an insecure hook'
     else (hook ->> 'id') || ' is a secure hook'
-  end as reason
+  end as reason,
+  -- Additional Dimensions
+  name
 from
   hooks_info;
