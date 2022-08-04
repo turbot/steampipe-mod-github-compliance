@@ -42,6 +42,4 @@ select
   r.full_name
 from
   repositories as r
-  left join
-    unpinned_task_count as u
-    on r.full_name = u.repository_full_name;
+  left join unpinned_task_count as u on r.full_name = u.repository_full_name;

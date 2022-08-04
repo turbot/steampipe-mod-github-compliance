@@ -38,6 +38,4 @@ select distinct
   r.full_name
 from
   repositories as r
-  left join
-    bulid_jobs as j
-    on r.full_name = j.repository_full_name
+  left join bulid_jobs as j on r.full_name = j.repository_full_name;

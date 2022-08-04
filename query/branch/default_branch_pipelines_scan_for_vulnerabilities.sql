@@ -44,7 +44,5 @@ select
   r.full_name
 from
   repositories as r
-  left join
-    vulnerability_task_repos as v
-    on r.full_name = v.repository_full_name;
+  left join vulnerability_task_repos as v on r.full_name = v.repository_full_name;
 

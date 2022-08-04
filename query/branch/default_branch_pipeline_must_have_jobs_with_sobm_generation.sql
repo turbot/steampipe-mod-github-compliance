@@ -104,5 +104,4 @@ select
   r.full_name
 from
   repositories as r
-  left join
-    pipeline_with_sbom_job_details as ps on r.full_name = ps.repository_full_name;
+  left join pipeline_with_sbom_job_details as ps on r.full_name = ps.repository_full_name;
