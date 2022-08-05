@@ -14,12 +14,6 @@ locals {
   cis_supply_chain_v100_1_3_common_tags = merge(local.cis_supply_chain_v100_1_common_tags, {
     cis_section_id = "1.3"
   })
-  cis_supply_chain_v100_1_4_common_tags = merge(local.cis_supply_chain_v100_1_common_tags, {
-    cis_section_id = "1.4"
-  })
-  cis_supply_chain_v100_1_5_common_tags = merge(local.cis_supply_chain_v100_1_common_tags, {
-    cis_section_id = "1.5"
-  })
 }
 
 benchmark "cis_supply_chain_v100_1" {
@@ -29,8 +23,6 @@ benchmark "cis_supply_chain_v100_1" {
     benchmark.cis_supply_chain_v100_1_1,
     benchmark.cis_supply_chain_v100_1_2,
     benchmark.cis_supply_chain_v100_1_3,
-    benchmark.cis_supply_chain_v100_1_4,
-    benchmark.cis_supply_chain_v100_1_5
   ]
 
   tags = merge(local.cis_supply_chain_v100_1_common_tags, {
@@ -42,8 +34,6 @@ benchmark "cis_supply_chain_v100_1_1" {
   title         = "1.1 Code Changes"
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_1.md")
   children = [
-    control.cis_supply_chain_v100_1_1_1,
-    control.cis_supply_chain_v100_1_1_2,
     control.cis_supply_chain_v100_1_1_3,
     control.cis_supply_chain_v100_1_1_4,
     control.cis_supply_chain_v100_1_1_5,
@@ -58,39 +48,11 @@ benchmark "cis_supply_chain_v100_1_1" {
     control.cis_supply_chain_v100_1_1_14,
     control.cis_supply_chain_v100_1_1_15,
     control.cis_supply_chain_v100_1_1_16,
-    control.cis_supply_chain_v100_1_1_17,
-    control.cis_supply_chain_v100_1_1_18,
-    control.cis_supply_chain_v100_1_1_19
+    control.cis_supply_chain_v100_1_1_17
   ]
 
   tags = merge(local.cis_supply_chain_v100_1_1_common_tags, {
     type = "Benchmark"
-  })
-}
-
-control "cis_supply_chain_v100_1_1_1" {
-  title         = "1.1.1 Ensure any changes to code are tracked in a version control platform"
-  description   = "Manage all code projects in a version control platform."
-  sql           = query.branch_manual_control.sql
-  documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_1_1.md")
-
-  tags = merge(local.cis_supply_chain_v100_1_1_common_tags, {
-    cis                   = "true"
-    cis_supply_chain_v100 = "true"
-    cis_type              = "manual"
-  })
-}
-
-control "cis_supply_chain_v100_1_1_2" {
-  title         = "1.1.2 Ensure any change to code can be traced back to its associated task"
-  description   = "Use a task management system to trace any code back to its associated task."
-  sql           = query.branch_manual_control.sql
-  documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_1_2.md")
-
-  tags = merge(local.cis_supply_chain_v100_1_1_common_tags, {
-    cis                   = "true"
-    cis_supply_chain_v100 = "true"
-    cis_type              = "manual"
   })
 }
 
@@ -289,32 +251,6 @@ control "cis_supply_chain_v100_1_1_17" {
   })
 }
 
-control "cis_supply_chain_v100_1_1_18" {
-  title         = "1.1.18 Ensure any merging of code is automatically scanned for risks"
-  description   = "Ensure that every pull request is required to be scanned for risks."
-  sql           = query.branch_manual_control.sql
-  documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_1_18.md")
-
-  tags = merge(local.cis_supply_chain_v100_1_1_common_tags, {
-    cis                   = "true"
-    cis_supply_chain_v100 = "true"
-    cis_type              = "manual"
-  })
-}
-
-control "cis_supply_chain_v100_1_1_19" {
-  title         = "1.1.19 Ensure any changes to branch protection rules are audited"
-  description   = "Ensure that changes in the branch protection rules are audited."
-  sql           = query.branch_manual_control.sql
-  documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_1_19.md")
-
-  tags = merge(local.cis_supply_chain_v100_1_1_common_tags, {
-    cis                   = "true"
-    cis_supply_chain_v100 = "true"
-    cis_type              = "manual"
-  })
-}
-
 benchmark "cis_supply_chain_v100_1_2" {
   title         = "1.2 Repository Management"
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_2.md")
@@ -323,9 +259,6 @@ benchmark "cis_supply_chain_v100_1_2" {
     control.cis_supply_chain_v100_1_2_2,
     control.cis_supply_chain_v100_1_2_3,
     control.cis_supply_chain_v100_1_2_4,
-    control.cis_supply_chain_v100_1_2_5,
-    control.cis_supply_chain_v100_1_2_6,
-    control.cis_supply_chain_v100_1_2_7
   ]
 
   tags = merge(local.cis_supply_chain_v100_1_2_common_tags, {
@@ -385,62 +318,18 @@ control "cis_supply_chain_v100_1_2_4" {
   })
 }
 
-control "cis_supply_chain_v100_1_2_5" {
-  title         = "1.2.5 Ensure all copies (forks) of code are tracked and accounted for"
-  description   = "Track every fork of code and ensure it is accounted for."
-  sql           = query.repo_manual_control.sql
-  documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_2_5.md")
-
-  tags = merge(local.cis_supply_chain_v100_1_2_common_tags, {
-    cis                   = "true"
-    cis_supply_chain_v100 = "true"
-    cis_type              = "manual"
-  })
-}
-
-control "cis_supply_chain_v100_1_2_6" {
-  title         = "1.2.6 Ensure all code projects are tracked for changes in visibility status"
-  description   = "Ensure every change in visibility of projects is tracked."
-  sql           = query.repo_manual_control.sql
-  documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_2_6.md")
-
-  tags = merge(local.cis_supply_chain_v100_1_2_common_tags, {
-    cis                   = "true"
-    cis_supply_chain_v100 = "true"
-    cis_type              = "manual"
-  })
-}
-
-control "cis_supply_chain_v100_1_2_7" {
-  title         = "1.2.7 Ensure inactive repositories are reviewed and archived periodically"
-  description   = "Track inactive repositories and remove them periodically."
-  sql           = query.repo_manual_control.sql
-  documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_2_7.md")
-
-  tags = merge(local.cis_supply_chain_v100_1_2_common_tags, {
-    cis                   = "true"
-    cis_supply_chain_v100 = "true"
-    cis_type              = "manual"
-  })
-}
-
 benchmark "cis_supply_chain_v100_1_3" {
   title         = "1.3 Contribution Access"
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_3.md")
   children = [
     control.cis_supply_chain_v100_1_3_1,
-    control.cis_supply_chain_v100_1_3_2,
     control.cis_supply_chain_v100_1_3_3,
     control.cis_supply_chain_v100_1_3_4,
     control.cis_supply_chain_v100_1_3_5,
     control.cis_supply_chain_v100_1_3_6,
     control.cis_supply_chain_v100_1_3_7,
     control.cis_supply_chain_v100_1_3_8,
-    control.cis_supply_chain_v100_1_3_9,
-    control.cis_supply_chain_v100_1_3_10,
-    control.cis_supply_chain_v100_1_3_11,
-    control.cis_supply_chain_v100_1_3_12,
-    control.cis_supply_chain_v100_1_3_13
+    control.cis_supply_chain_v100_1_3_9
   ]
 
   tags = merge(local.cis_supply_chain_v100_1_3_common_tags, {
@@ -461,23 +350,10 @@ control "cis_supply_chain_v100_1_3_1" {
   })
 }
 
-control "cis_supply_chain_v100_1_3_2" {
-  title         = "1.3.2 Ensure team creation is limited to specific members"
-  description   = "Limit the ability to create teams to trusted and specific users."
-  sql           = query.org_manual_control.sql
-  documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_3_2.md")
-
-  tags = merge(local.cis_supply_chain_v100_1_3_common_tags, {
-    cis                   = "true"
-    cis_supply_chain_v100 = "true"
-    cis_type              = "manual"
-  })
-}
-
 control "cis_supply_chain_v100_1_3_3" {
   title         = "1.3.3 Ensure minimum number of administrators are set for the organization"
   description   = "Ensure the organization has a minimum number of administrators."
-  sql           = query.org_manual_control.sql
+  sql           = query.organization_minimum_administrators_set.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_3_3.md")
 
   tags = merge(local.cis_supply_chain_v100_1_3_common_tags, {
@@ -562,205 +438,5 @@ control "cis_supply_chain_v100_1_3_9" {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
     cis_type              = "automated"
-  })
-}
-
-control "cis_supply_chain_v100_1_3_10" {
-  title         = "1.3.10 Ensure Source Code Management (SCM) email notifications are restricted to verified domains"
-  description   = "Restrict the organization's Source Code Management (SCM) email notifications to approved domains only."
-  sql           = query.org_manual_control.sql
-  documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_3_10.md")
-
-  tags = merge(local.cis_supply_chain_v100_1_3_common_tags, {
-    cis                   = "true"
-    cis_supply_chain_v100 = "true"
-    cis_type              = "manual"
-  })
-}
-
-control "cis_supply_chain_v100_1_3_11" {
-  title         = "1.3.11 Ensure an organization provides SSH certificates"
-  description   = "As an organization, become an SSH Certificate Authority (CA) and provide SSH keys for accessing repositories."
-  sql           = query.org_manual_control.sql
-  documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_3_11.md")
-
-  tags = merge(local.cis_supply_chain_v100_1_3_common_tags, {
-    cis                   = "true"
-    cis_supply_chain_v100 = "true"
-    cis_type              = "manual"
-  })
-}
-
-control "cis_supply_chain_v100_1_3_12" {
-  title         = "1.3.12 Ensure Git access is limited based on IP addresses"
-  description   = "Limit Git access based on IP addresses by having an allowlist of IP addresses from which connection is possible."
-  sql           = query.org_manual_control.sql
-  documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_3_12.md")
-
-  tags = merge(local.cis_supply_chain_v100_1_3_common_tags, {
-    cis                   = "true"
-    cis_supply_chain_v100 = "true"
-    cis_type              = "manual"
-  })
-}
-
-control "cis_supply_chain_v100_1_3_13" {
-  title         = "1.3.13 Ensure anomalous code behavior is tracked"
-  description   = "Track code anomalies."
-  sql           = query.org_manual_control.sql
-  documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_3_13.md")
-
-  tags = merge(local.cis_supply_chain_v100_1_3_common_tags, {
-    cis                   = "true"
-    cis_supply_chain_v100 = "true"
-    cis_type              = "manual"
-  })
-}
-
-benchmark "cis_supply_chain_v100_1_4" {
-  title         = "1.4 Third-Party"
-  documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_4.md")
-  children = [
-    control.cis_supply_chain_v100_1_4_1,
-    control.cis_supply_chain_v100_1_4_2,
-    control.cis_supply_chain_v100_1_4_3
-  ]
-
-  tags = merge(local.cis_supply_chain_v100_1_4_common_tags, {
-    type = "Benchmark"
-  })
-}
-
-control "cis_supply_chain_v100_1_4_1" {
-  title         = "1.4.1 Ensure administrator approval is required for every installed application"
-  description   = "Ensure an administrator approval is required when installing applications."
-  sql           = query.org_manual_control.sql
-  documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_4_1.md")
-
-  tags = merge(local.cis_supply_chain_v100_1_4_common_tags, {
-    cis                   = "true"
-    cis_supply_chain_v100 = "true"
-    cis_type              = "manual"
-  })
-}
-
-control "cis_supply_chain_v100_1_4_2" {
-  title         = "1.4.2 Ensure stale applications are reviewed and inactive ones are removed"
-  description   = "Ensure stale (inactive) applications are reviewed and removed if no longer in use."
-  sql           = query.org_manual_control.sql
-  documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_4_2.md")
-
-  tags = merge(local.cis_supply_chain_v100_1_4_common_tags, {
-    cis                   = "true"
-    cis_supply_chain_v100 = "true"
-    cis_type              = "manual"
-  })
-}
-
-control "cis_supply_chain_v100_1_4_3" {
-  title         = "1.4.3 Ensure the access granted to each installed application is limited to the least privilege needed"
-  description   = "Ensure installed application permissions are limited to the lowest privilege level required."
-  sql           = query.org_manual_control.sql
-  documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_4_3.md")
-
-  tags = merge(local.cis_supply_chain_v100_1_4_common_tags, {
-    cis                   = "true"
-    cis_supply_chain_v100 = "true"
-    cis_type              = "manual"
-  })
-}
-
-benchmark "cis_supply_chain_v100_1_5" {
-  title         = "1.5 Code Risks"
-  documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_5.md")
-  children = [
-    control.cis_supply_chain_v100_1_5_1,
-    control.cis_supply_chain_v100_1_5_2,
-    control.cis_supply_chain_v100_1_5_3,
-    control.cis_supply_chain_v100_1_5_4,
-    control.cis_supply_chain_v100_1_5_5,
-    control.cis_supply_chain_v100_1_5_6
-  ]
-
-  tags = merge(local.cis_supply_chain_v100_1_5_common_tags, {
-    type = "Benchmark"
-  })
-}
-
-control "cis_supply_chain_v100_1_5_1" {
-  title         = "1.5.1 Ensure scanners are in place to identify and prevent sensitive data in code"
-  description   = "Detect and prevent sensitive data in code, such as confidential ID numbers, passwords, etc."
-  sql           = query.repo_manual_control.sql
-  documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_5_1.md")
-
-  tags = merge(local.cis_supply_chain_v100_1_5_common_tags, {
-    cis                   = "true"
-    cis_supply_chain_v100 = "true"
-    cis_type              = "manual"
-  })
-}
-
-control "cis_supply_chain_v100_1_5_2" {
-  title         = "1.5.2 Ensure scanners are in place to secure Continuous Integration (CI) pipeline instructions"
-  description   = "Detect and prevent misconfigurations and insecure instructions in Continuous Integration (CI) pipelines."
-  sql           = query.repo_manual_control.sql
-  documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_5_2.md")
-
-  tags = merge(local.cis_supply_chain_v100_1_5_common_tags, {
-    cis                   = "true"
-    cis_supply_chain_v100 = "true"
-    cis_type              = "manual"
-  })
-}
-
-control "cis_supply_chain_v100_1_5_3" {
-  title         = "1.5.3 Ensure scanners are in place to secure Infrastructure as Code (IaC) instructions"
-  description   = "Detect and prevent misconfigurations or insecure instructions in Infrastructure as Code (IaC) files, such as Terraform files."
-  sql           = query.repo_manual_control.sql
-  documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_5_3.md")
-
-  tags = merge(local.cis_supply_chain_v100_1_5_common_tags, {
-    cis                   = "true"
-    cis_supply_chain_v100 = "true"
-    cis_type              = "manual"
-  })
-}
-
-control "cis_supply_chain_v100_1_5_4" {
-  title         = "1.5.4 Ensure scanners are in place for code vulnerabilities"
-  description   = "Detect and prevent known open-source vulnerabilities in the code."
-  sql           = query.repo_manual_control.sql
-  documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_5_4.md")
-
-  tags = merge(local.cis_supply_chain_v100_1_5_common_tags, {
-    cis                   = "true"
-    cis_supply_chain_v100 = "true"
-    cis_type              = "manual"
-  })
-}
-
-control "cis_supply_chain_v100_1_5_5" {
-  title         = "1.5.5 Ensure scanners are in place for open-source vulnerabilities in used packages"
-  description   = "Detect, prevent and monitor known open-source vulnerabilities in packages that are being used."
-  sql           = query.repo_manual_control.sql
-  documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_5_5.md")
-
-  tags = merge(local.cis_supply_chain_v100_1_5_common_tags, {
-    cis                   = "true"
-    cis_supply_chain_v100 = "true"
-    cis_type              = "manual"
-  })
-}
-
-control "cis_supply_chain_v100_1_5_6" {
-  title         = "1.5.6 Ensure scanners are in place for open-source license issues in used packages"
-  description   = "Detect open-source license problems in used dependencies and fix them."
-  sql           = query.repo_manual_control.sql
-  documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_5_6.md")
-
-  tags = merge(local.cis_supply_chain_v100_1_5_common_tags, {
-    cis                   = "true"
-    cis_supply_chain_v100 = "true"
-    cis_type              = "manual"
   })
 }

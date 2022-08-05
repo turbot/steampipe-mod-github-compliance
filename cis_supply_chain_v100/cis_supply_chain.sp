@@ -13,8 +13,7 @@ benchmark "cis_supply_chain_v100" {
     benchmark.cis_supply_chain_v100_1,
     benchmark.cis_supply_chain_v100_2,
     benchmark.cis_supply_chain_v100_3,
-    benchmark.cis_supply_chain_v100_4,
-    benchmark.cis_supply_chain_v100_5
+    benchmark.cis_supply_chain_v100_4
   ]
 
   tags = merge(local.cis_supply_chain_v100_common_tags, {
