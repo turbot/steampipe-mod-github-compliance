@@ -1,9 +1,15 @@
+-- select
+--   -- Required Columns
+--   name as resource,
+--   'info' as status,
+--   'Manual verification required for repositories within organization ' as reason,
+--   -- Additional Dimensions
+--   name as organization_name
+-- from
+--   github_my_organization;
+
 select
   -- Required Columns
-  name as resource,
+  'repository' as resource,
   'info' as status,
-  'Manual verification required for repositories within organization ' as reason,
-  -- Additional Dimensions
-  name as organization_name
-from
-  github_my_organization
+  'Manual verification required for repositories ' as reason
