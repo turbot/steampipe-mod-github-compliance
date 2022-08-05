@@ -1,12 +1,9 @@
 select
   -- Required Columns
-  full_name as resource,
-  visibility,
+  name as resource,
   'info' as status,
-  'Manual verification required.' as reason,
+  'Manual verification required for repositories within organization ' as reason,
   -- Additional Dimensions
-full_name
+  name as organization_name
 from
-  github_my_repository
-where fork = 'false'
-order by visibility;
+  github_my_organization

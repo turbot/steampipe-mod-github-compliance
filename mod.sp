@@ -22,9 +22,9 @@ mod "github_compliance" {
     #   # image       = "/images/mods/turbot/github-compliance-social-graphic.png"
   }
 
-  require {
-    plugin "github" {
-      version = "0.18.0"
-    }
-  }
+  # require {
+  #   plugin "github" {
+  #     version = "0.18.0"
+  #   }
+  # }
 }
