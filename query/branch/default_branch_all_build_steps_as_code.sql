@@ -14,7 +14,7 @@ pipelines as (
   from
     github_workflow
   where
-    repository_full_name in(select full_name from repositories)
+    repository_full_name in (select full_name from repositories)
 ),
 bulid_jobs as (
   select distinct

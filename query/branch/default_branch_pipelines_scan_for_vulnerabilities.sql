@@ -39,8 +39,8 @@ select
     else 'ok'
   end as status,
   case
-    when v.repository_full_name is null then 'Automated vulnerabilities scanning is not set.'
-    else 'Automated vulnerabilities scanning is set.'
+    when v.repository_full_name is null then 'Automated vulnerabilities scanning is not set for pipelines.'
+    else 'Automated vulnerabilities scanning is set for pipelines.'
   end as reason,
   -- Additional Dimensions
   r.full_name

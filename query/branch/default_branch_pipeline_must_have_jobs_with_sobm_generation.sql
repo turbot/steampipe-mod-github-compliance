@@ -15,13 +15,7 @@ pipelines as (
   from
     github_workflow
   where
-    repository_full_name in
-    (
-      select
-        full_name
-      from
-        repositories
-    )
+    repository_full_name in (select full_name from repositories)
 ),
 build_jobs_sbom_details as (
   select
@@ -99,7 +93,7 @@ select
   end as status,
   case
     when ps.pipeline_without_sbom_jobs > 0 then ps.pipeline_without_sbom_jobs::text || ' pipeline(s) contain a build job without SBOM generation.'
-    when ps.repository_full_name is null then 'No pipelines in the repo.'
+    when ps.repository_full_name is null then 'No pipelines avilable in the repository.'
     else 'All pipeline(s) contain a build job with SBOM generation.'
   end as reason,
   -- Additional Dimensions

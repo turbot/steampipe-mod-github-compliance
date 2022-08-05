@@ -37,7 +37,7 @@ select
   end as status,
   case
     when u.unpinned_task_count > 0 then unpinned_task_count::text || ' task(s) are not pinned.'
-    when u.repository_full_name is null then 'no build task(s) in the repo.'
+    when u.repository_full_name is null then 'No build task(s) in the repository.'
     else 'All task(s) are pinned.'
   end as reason,
   -- Additional Dimensions
