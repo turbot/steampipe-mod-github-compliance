@@ -1,6 +1,6 @@
 select
   -- Required Columns
-    html_url as resource,
+  html_url as resource,
   case
     when delete_branch_on_merge then 'ok'
     else 'alarm'

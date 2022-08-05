@@ -26,6 +26,7 @@ bulid_jobs as (
     (j -> 'metadata' -> 'build')::bool
 )
 select distinct
+  -- Required Columns
   r.full_name as resource,
   case
     when j.repository_full_name is null then 'alarm'
@@ -33,8 +34,9 @@ select distinct
   end as status,
   case
     when j.repository_full_name is null then 'No build steps defined as code.'
-      else 'All build steps are defined as code.'
+    else 'All build steps are defined as code.'
   end as reason,
+  -- Required Dimensions
   r.full_name
 from
   repositories as r

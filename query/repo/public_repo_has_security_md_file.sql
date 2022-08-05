@@ -2,7 +2,7 @@ select
 -- Required Columns
   r.full_name as resource,
   case
-    when p.security is null then 'This repository is empty'
+    when p.security is null then 'The repository is empty'
     when p.security is not null then 'ok'
     else 'alarm'
   end as status,
