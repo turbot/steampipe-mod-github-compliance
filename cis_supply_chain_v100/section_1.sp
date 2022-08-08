@@ -50,7 +50,6 @@ benchmark "cis_supply_chain_v100_1_1" {
     control.cis_supply_chain_v100_1_1_4,
     control.cis_supply_chain_v100_1_1_5,
     control.cis_supply_chain_v100_1_1_6,
-    control.cis_supply_chain_v100_1_1_7,
     control.cis_supply_chain_v100_1_1_8,
     control.cis_supply_chain_v100_1_1_9,
     control.cis_supply_chain_v100_1_1_10,
@@ -117,19 +116,6 @@ control "cis_supply_chain_v100_1_1_6" {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
     cis_type              = "automated"
-  })
-}
-
-control "cis_supply_chain_v100_1_1_7" {
-  title         = "1.1.7 Ensure code owner's review is required when a change affects owned code"
-  description   = "Ensure trusted code owners are required to review and approve any code change proposal made to their respective owned areas in the code base."
-  sql           = query.branch_manual_control.sql
-  documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_1_7.md")
-
-  tags = merge(local.cis_supply_chain_v100_1_1_common_tags, {
-    cis                   = "true"
-    cis_supply_chain_v100 = "true"
-    cis_type              = "manual"
   })
 }
 
@@ -311,9 +297,10 @@ control "cis_supply_chain_v100_1_2_3" {
   description   = "Ensure only a limited number of trusted users can delete repositories."
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_2_3.md")
   sql           = query.repo_deletion_limited_to_trusted_users.sql
-  
+
   param "trusted_repo_admin" {
-    default = var.trusted_repo_admin
+    description = "A list of repository admins."
+    default     = var.trusted_repo_admin
   }
 
   tags = merge(local.cis_supply_chain_v100_1_2_common_tags, {
@@ -355,9 +342,7 @@ benchmark "cis_supply_chain_v100_1_3" {
   children = [
     control.cis_supply_chain_v100_1_3_1,
     control.cis_supply_chain_v100_1_3_3,
-    control.cis_supply_chain_v100_1_3_4,
     control.cis_supply_chain_v100_1_3_5,
-    control.cis_supply_chain_v100_1_3_6,
     control.cis_supply_chain_v100_1_3_7,
     control.cis_supply_chain_v100_1_3_8,
     control.cis_supply_chain_v100_1_3_9
@@ -394,19 +379,6 @@ control "cis_supply_chain_v100_1_3_3" {
   })
 }
 
-control "cis_supply_chain_v100_1_3_4" {
-  title         = "1.3.4 Ensure Multi-Factor Authentication (MFA) is required for contributors of new code"
-  description   = "Require collaborators from outside the organization to use Multi-Factor Authentication (MFA) in addition to a standard user name and password when authenticating to the source code management platform."
-  sql           = query.org_manual_control.sql
-  documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_3_4.md")
-
-  tags = merge(local.cis_supply_chain_v100_1_3_common_tags, {
-    cis                   = "true"
-    cis_supply_chain_v100 = "true"
-    cis_type              = "manual"
-  })
-}
-
 control "cis_supply_chain_v100_1_3_5" {
   title         = "1.3.5 Ensure the organization is requiring members to use Multi-Factor Authentication (MFA)"
   description   = "Require members of the organization to use Multi-Factor Authentication (MFA) in addition to a standard user name and password when authenticating to the source code management platform."
@@ -417,19 +389,6 @@ control "cis_supply_chain_v100_1_3_5" {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
     cis_type              = "automated"
-  })
-}
-
-control "cis_supply_chain_v100_1_3_6" {
-  title         = "1.3.6 Ensure new members are required to be invited using company-approved email"
-  description   = "Existing members of an organization can invite new members to join; however, new members must only be invited with their company-approved email."
-  sql           = query.org_manual_control.sql
-  documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_3_6.md")
-
-  tags = merge(local.cis_supply_chain_v100_1_3_common_tags, {
-    cis                   = "true"
-    cis_supply_chain_v100 = "true"
-    cis_type              = "manual"
   })
 }
 

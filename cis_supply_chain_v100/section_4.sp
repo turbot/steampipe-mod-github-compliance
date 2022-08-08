@@ -16,8 +16,6 @@ locals {
   })
 }
 
-
-
 benchmark "cis_supply_chain_v100_4" {
   title         = "4 Artifacts"
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_4.md")

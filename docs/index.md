@@ -4,6 +4,27 @@ repository: "https://github.com/turbot/steampipe-mod-github-compliance"
 
 # GitHub Compliance Mod
 
+Run security controls across all your AWS accounts to look for resources that are publicly accessible resources, shared with untrusted accounts, have insecure network configurations, and more.
+
+<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/main/docs/images/aws_perimeter_dashboard.png" width="50%" type="thumbnail"/>
+<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/main/docs/images/aws_perimeter_network_access_dashboard.png" width="50%" type="thumbnail"/>
+<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/main/docs/images/aws_perimeter_public_access_dashboard.png" width="50%" type="thumbnail"/>
+<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/main/docs/images/aws_perimeter_shared_access_dashboard.png" width="50%" type="thumbnail"/>
+<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/main/docs/images/aws_perimeter_public_access_output.png" width="50%" type="thumbnail"/>
+
+## References
+
+[GitHub](https://github.com/) is a provider of Internet hosting for software development and version control using Git.
+
+[Steampipe](https://steampipe.io) is an open source CLI to instantly query cloud APIs using SQL.
+
+[Steampipe Mods](https://steampipe.io/docs/reference/mod-resources#mod) are collections of `named queries`, and codified `controls` that can be used to test current configuration of your cloud resources against a desired configuration.
+
+## Documentation
+
+- **[Benchmarks and controls →](https://hub.steampipe.io/mods/turbot/steampipe-mod-github-compliance/controls)**
+- **[Named queries →](https://hub.steampipe.io/mods/turbot/steampipe-mod-github-compliance/queries)**
+
 ## Getting started
 
 ### Installation
@@ -71,6 +92,27 @@ This mod uses the credentials configured in the [Steampipe GitHub plugin](https:
 ### Configuration
 
 No extra configuration is required.
+
+### Configuration
+
+Few benchmarks have [input variables](https://steampipe.io/docs/using-steampipe/mod-variables) that can be configured to better match your environment and requirements. Each variable has a default defined in its source file, e.g., `cis_supply_chain_v100/section_1.sp`, but these can be overwritten in several ways:
+
+- Copy and rename the `steampipe.spvars.example` file to `steampipe.spvars`, and then modify the variable values inside that file
+- Pass in a value on the command line:
+
+  ```shell
+  steampipe check control.cis_supply_chain_v100_1_2_3 --var='trusted_repo_admin=["abc22", "bbc22"]'
+  ```
+
+- Set an environment variable:
+
+  ```shell
+  SP_VAR_trusted_repo_admin='["abc22", "bbc22"]' steampipe check control.cis_supply_chain_v100_1_2_3
+  ```
+
+  - Note: When using environment variables, if the variable is defined in `steampipe.spvars` or passed in through the command line, either of those will take precedence over the environment variable value. For more information on variable definition precedence, please see the link below.
+
+These are only some of the ways you can set variables. For a full list, please see [Passing Input Variables](https://steampipe.io/docs/using-steampipe/mod-variables#passing-input-variables).
 
 ## Contributing
 

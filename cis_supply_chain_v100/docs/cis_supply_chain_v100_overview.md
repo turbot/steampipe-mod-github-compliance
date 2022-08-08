@@ -1,4 +1,6 @@
-To obtain the latest version of the official guide, please visit http://benchmarks.cisecurity.org. 
+To obtain the latest version of the official guide, please visit http://benchmarks.cisecurity.org.
+
+  **Note**: Some sections from the CIS Supply Chain Security compliance benchmark are not provided due to manual evaluation in the current state. The sections will be updated as any recommendation is provided by the user community or will be added as definite steps are updated in CIS's upcoming updates.
 
 ## Overview
 
