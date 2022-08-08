@@ -311,6 +311,7 @@ control "cis_supply_chain_v100_1_2_3" {
   description   = "Ensure only a limited number of trusted users can delete repositories."
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_2_3.md")
   sql           = query.repo_deletion_limited_to_trusted_users.sql
+  
   param "trusted_repo_admin" {
     default = var.trusted_repo_admin
   }

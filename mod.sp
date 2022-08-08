@@ -11,7 +11,7 @@ mod "github_compliance" {
   # hub metadata
   title         = "GitHub Compliance"
   description   = "Run individual configuration, compliance and security controls or full compliance benchmarks for GitHub across your repositories and organizations using Steampipe."
-  color         = "#FF9900"
+  color         = "#191717"
   documentation = file("./docs/index.md")
   # icon          = "/images/mods/turbot/github-compliance.svg"
   categories = ["github", "cis", "compliance", "security"]
@@ -19,7 +19,7 @@ mod "github_compliance" {
   opengraph {
     title       = "Steampipe Mod for GitHub Compliance"
     description = "Run individual configuration, compliance and security controls or full compliance benchmarks for GitHub across your repositories and organizations using Steampipe."
-    #   # image       = "/images/mods/turbot/github-compliance-social-graphic.png"
+    # image       = "/images/mods/turbot/github-compliance-social-graphic.png"
   }
 
   require {
