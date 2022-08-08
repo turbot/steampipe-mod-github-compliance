@@ -1,3 +1,15 @@
+variable "trusted_repo_admin" {
+  type        = list(string)
+  default     = [""]
+  description = "A list of github users allowed to delete the repository."
+}
+
+variable "trusted_issue_admin" {
+  type        = list(string)
+  default     = [""]
+  description = "A list of github users allowed to delete the issue."
+}
+
 locals {
   cis_supply_chain_v100_1_common_tags = merge(local.cis_supply_chain_v100_common_tags, {
     cis_section_id = "1"
@@ -124,13 +136,13 @@ control "cis_supply_chain_v100_1_1_7" {
 control "cis_supply_chain_v100_1_1_8" {
   title         = "1.1.8 Ensure inactive branches are periodically reviewed and removed"
   description   = "Keep track of code branches that are inactive for a lengthy period of time and periodically remove them."
-  sql           = query.repo_delete_branch_on_merge_enabled.sql
+  sql           = query.branch_manual_control.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_1_8.md")
 
   tags = merge(local.cis_supply_chain_v100_1_1_common_tags, {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
-    cis_type              = "automated"
+    cis_type              = "manual"
   })
 }
 
@@ -259,6 +271,7 @@ benchmark "cis_supply_chain_v100_1_2" {
     control.cis_supply_chain_v100_1_2_2,
     control.cis_supply_chain_v100_1_2_3,
     control.cis_supply_chain_v100_1_2_4,
+    control.cis_supply_chain_v100_1_2_7,
   ]
 
   tags = merge(local.cis_supply_chain_v100_1_2_common_tags, {
@@ -292,11 +305,15 @@ control "cis_supply_chain_v100_1_2_2" {
   })
 }
 
+
 control "cis_supply_chain_v100_1_2_3" {
   title         = "1.2.3 Ensure repository deletion is limited to specific users"
   description   = "Ensure only a limited number of trusted users can delete repositories."
-  sql           = query.repo_deletion_limited_to_3_users.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_2_3.md")
+  sql           = query.repo_deletion_limited_to_trusted_users.sql
+  param "trusted_repo_admin" {
+    default = var.trusted_repo_admin
+  }
 
   tags = merge(local.cis_supply_chain_v100_1_2_common_tags, {
     cis                   = "true"
@@ -308,8 +325,21 @@ control "cis_supply_chain_v100_1_2_3" {
 control "cis_supply_chain_v100_1_2_4" {
   title         = "1.2.4 Ensure issue deletion is limited to specific users"
   description   = "Ensure only trusted and responsible users can delete issues."
-  sql           = query.repo_issue_deletion_limited_to_3_users.sql
+  sql           = query.repo_issue_deletion_limited_to_trusted_users.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_2_4.md")
+
+  tags = merge(local.cis_supply_chain_v100_1_2_common_tags, {
+    cis                   = "true"
+    cis_supply_chain_v100 = "true"
+    cis_type              = "automated"
+  })
+}
+
+control "cis_supply_chain_v100_1_2_7" {
+  title         = "1.2.4 Ensure inactive repositories are reviewed and archived periodically"
+  description   = "Ensure inactive repositories are reviewed and archived periodically."
+  sql           = query.repo_inactive_more_than_90_days.sql
+  documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_2_7.md")
 
   tags = merge(local.cis_supply_chain_v100_1_2_common_tags, {
     cis                   = "true"
@@ -340,7 +370,7 @@ benchmark "cis_supply_chain_v100_1_3" {
 control "cis_supply_chain_v100_1_3_1" {
   title         = "1.3.1 Ensure inactive users are reviewed and removed periodically"
   description   = "Track inactive user accounts and periodically remove them."
-  sql           = query.org_manual_control.sql
+  sql           = query.repository_inactive_members_review.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_3_1.md")
 
   tags = merge(local.cis_supply_chain_v100_1_3_common_tags, {
