@@ -19,8 +19,12 @@ select
     else 'ok'
   end as status,
   case
-    when jsonb_array_length(to_jsonb(admins) - $1::text[]) > 0 then
-      'Repository deletion permission not limited to trusted users.'
+    when jsonb_array_length(to_jsonb(admins) - $1::text[]) > 2
+      then concat( 'Repository deletion permission allowed to untrusted users ', to_jsonb(admins) - $1::text[] #>> '{0}', ', ', to_jsonb(admins) - $1::text[] #>> '{1}', ' and ', (jsonb_array_length(to_jsonb(admins) - $1::text[]) - 2)::text, ' more.')
+    when jsonb_array_length(to_jsonb(admins) - $1::text[]) = 2
+      then concat('Repository deletion permission allowed to untrusted users ', to_jsonb(admins) - $1::text[] #>> '{0}', ' and ', to_jsonb(admins) - $1::text[] #>> '{1}', '.')
+    when jsonb_array_length(to_jsonb(admins) - $1::text[]) = 1
+      then concat('Repository deletion permission allowed to untrusted user ', to_jsonb(admins) - $1::text[] #>> '{0}', '.')
     else 'Repository deletion permission limited to trusted users.'
   end as reason,
   -- Additional Dimensions

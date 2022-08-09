@@ -15,12 +15,12 @@ select
   -- Required Columns
   r.full_name as resource,
   case
-    when jsonb_array_length(to_jsonb(admins) - $1::text[]) > 0 then 'alarm'
-    else 'ok'
-  end as status,
-  case
-    when jsonb_array_length(to_jsonb(admins) - $1::text[]) > 0 then
-      'Repository issue deletion permission not limited to trusted users.'
+    when jsonb_array_length(to_jsonb(admins) - $1::text[]) > 2
+      then concat( 'Repository issue deletion permission allowed to untrusted users ', to_jsonb(admins) - $1::text[] #>> '{0}', ', ', to_jsonb(admins) - $1::text[] #>> '{1}', ' and ', (jsonb_array_length(to_jsonb(admins) - $1::text[]) - 2)::text, ' more.')
+    when jsonb_array_length(to_jsonb(admins) - $1::text[]) = 2
+      then concat('Repository issue deletion permission allowed to untrusted users ', to_jsonb(admins) - $1::text[] #>> '{0}', ' and ', to_jsonb(admins) - $1::text[] #>> '{1}', '.')
+    when jsonb_array_length(to_jsonb(admins) - $1::text[]) = 1
+      then concat('Repository issue deletion permission allowed to untrusted user ', to_jsonb(admins) - $1::text[] #>> '{0}', '.')
     else 'Repository issue deletion permission limited to trusted users.'
   end as reason,
   -- Additional Dimensions
