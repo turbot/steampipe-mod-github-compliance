@@ -6,11 +6,9 @@ repository: "https://github.com/turbot/steampipe-mod-github-compliance"
 
 Run security controls across all your AWS accounts to look for resources that are publicly accessible resources, shared with untrusted accounts, have insecure network configurations, and more.
 
-<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/main/docs/images/aws_perimeter_dashboard.png" width="50%" type="thumbnail"/>
-<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/main/docs/images/aws_perimeter_network_access_dashboard.png" width="50%" type="thumbnail"/>
-<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/main/docs/images/aws_perimeter_public_access_dashboard.png" width="50%" type="thumbnail"/>
-<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/main/docs/images/aws_perimeter_shared_access_dashboard.png" width="50%" type="thumbnail"/>
-<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/main/docs/images/aws_perimeter_public_access_output.png" width="50%" type="thumbnail"/>
+<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/main/docs/images/github_compliance_cis_v100_dashboard.png" width="50%" type="thumbnail"/>
+<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/main/docs/images/github_compliance_report.png" width="50%" type="thumbnail"/>
+<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/main/docs/images/github_cis_v100_console.png" width="50%" type="thumbnail"/>
 
 ## References
 
