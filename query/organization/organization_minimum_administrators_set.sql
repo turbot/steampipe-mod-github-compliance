@@ -6,11 +6,11 @@ select
     else 'ok'
   end as status,
   case
-    when count(m.login) < 2 then m.organization || ' has less than 2 admins'
-    else m.organization || ' has minimum required admins'
-  end as reason
--- Required Dimensions
-m.organization
+    when count(m.login) < 2 then m.organization || ' has less than 2 admins.'
+    else m.organization || ' has minimum required admins.'
+  end as reason,
+  -- Required Dimensions
+  m.organization
 from
   github_organization_member m
   join github_my_organization o on m.organization = o.login

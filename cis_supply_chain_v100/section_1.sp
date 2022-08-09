@@ -299,7 +299,7 @@ control "cis_supply_chain_v100_1_2_3" {
   sql           = query.repo_deletion_limited_to_trusted_users.sql
 
   param "trusted_repo_admin" {
-    description = "A list of repository admins."
+    description = "A list of github users allowed to delete the repository."
     default     = var.trusted_repo_admin
   }
 
@@ -315,6 +315,11 @@ control "cis_supply_chain_v100_1_2_4" {
   description   = "Ensure only trusted and responsible users can delete issues."
   sql           = query.repo_issue_deletion_limited_to_trusted_users.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_2_4.md")
+
+  param "trusted_issue_admin" {
+    description = "A list of github users allowed to delete the issue."
+    default     = var.trusted_issue_admin
+  }
 
   tags = merge(local.cis_supply_chain_v100_1_2_common_tags, {
     cis                   = "true"
