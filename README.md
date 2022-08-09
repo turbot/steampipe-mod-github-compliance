@@ -15,7 +15,6 @@ Includes support for:
 2. [Build Pipelines](https://hub.steampipe.io/mods/turbot/github_compliance/controls/benchmark.cis_v100_2)
 3. [Dependencies](https://hub.steampipe.io/mods/turbot/github_compliance/controls/benchmark.cis_v100_3)
 4. [Artifacts](https://hub.steampipe.io/mods/turbot/github_compliance/controls/benchmark.cis_v100_4)
-5. [Deployment](https://hub.steampipe.io/mods/turbot/github_compliance/controls/benchmark.cis_v100_5)
 
 ## Getting started
 
@@ -82,7 +81,24 @@ This mod uses the credentials configured in the [Steampipe GitHub plugin](https:
 
 ### Configuration
 
-No extra configuration is required.
+Few benchmarks have [input variables](https://steampipe.io/docs/using-steampipe/mod-variables) that can be configured to better match your environment and requirements. Each variable has a default defined in its source file, e.g., `cis_supply_chain_v100/section_1.sp`, but these can be overwritten in several ways:
+
+- Copy and rename the `steampipe.spvars.example` file to `steampipe.spvars`, and then modify the variable values inside that file
+- Pass in a value on the command line:
+
+  ```shell
+  steampipe check control.cis_supply_chain_v100_1_2_3 --var='trusted_repo_admin=["abc22", "bbc22"]'
+  ```
+
+- Set an environment variable:
+
+  ```shell
+  SP_VAR_trusted_repo_admin='["abc22", "bbc22"]' steampipe check control.cis_supply_chain_v100_1_2_3
+  ```
+
+  - Note: When using environment variables, if the variable is defined in `steampipe.spvars` or passed in through the command line, either of those will take precedence over the environment variable value. For more information on variable definition precedence, please see the link below.
+
+These are only some of the ways you can set variables. For a full list, please see [Passing Input Variables](https://steampipe.io/docs/using-steampipe/mod-variables#passing-input-variables).
 
 ## Contributing
 
