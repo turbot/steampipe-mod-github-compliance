@@ -15,6 +15,10 @@ select
   -- Required Columns
   r.full_name as resource,
   case
+    when jsonb_array_length(to_jsonb(admins) - $1::text[]) > 0 then 'alarm'
+    else 'ok'
+  end as status,
+  case
     when jsonb_array_length(to_jsonb(admins) - $1::text[]) > 2
       then concat( 'Repository issue deletion permission allowed to untrusted users ', to_jsonb(admins) - $1::text[] #>> '{0}', ', ', to_jsonb(admins) - $1::text[] #>> '{1}', ' and ', (jsonb_array_length(to_jsonb(admins) - $1::text[]) - 2)::text, ' more.')
     when jsonb_array_length(to_jsonb(admins) - $1::text[]) = 2
