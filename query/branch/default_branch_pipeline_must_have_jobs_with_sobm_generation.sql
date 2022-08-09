@@ -93,7 +93,7 @@ select
   end as status,
   case
     when ps.pipeline_without_sbom_jobs > 0 then ps.pipeline_without_sbom_jobs::text || ' pipeline(s) contain a build job without SBOM generation.'
-    when ps.repository_full_name is null then 'No pipelines avilable in the repository.'
+    when ps.repository_full_name is null then 'No pipelines available in the repository.'
     else 'All pipeline(s) contain a build job with SBOM generation.'
   end as reason,
   -- Additional Dimensions
