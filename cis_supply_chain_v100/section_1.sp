@@ -50,7 +50,6 @@ benchmark "cis_supply_chain_v100_1_1" {
     control.cis_supply_chain_v100_1_1_4,
     control.cis_supply_chain_v100_1_1_5,
     control.cis_supply_chain_v100_1_1_6,
-    control.cis_supply_chain_v100_1_1_8,
     control.cis_supply_chain_v100_1_1_9,
     control.cis_supply_chain_v100_1_1_10,
     control.cis_supply_chain_v100_1_1_11,
@@ -116,19 +115,6 @@ control "cis_supply_chain_v100_1_1_6" {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
     cis_type              = "automated"
-  })
-}
-
-control "cis_supply_chain_v100_1_1_8" {
-  title         = "1.1.8 Ensure inactive branches are periodically reviewed and removed"
-  description   = "Keep track of code branches that are inactive for a lengthy period of time and periodically remove them."
-  sql           = query.branch_manual_control.sql
-  documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_1_8.md")
-
-  tags = merge(local.cis_supply_chain_v100_1_1_common_tags, {
-    cis                   = "true"
-    cis_supply_chain_v100 = "true"
-    cis_type              = "manual"
   })
 }
 

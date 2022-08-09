@@ -5,9 +5,9 @@ select
     when b.required_conversation_resolution_enabled is not null and (b.required_conversation_resolution_enabled)::bool = true then 'ok'
     else 'alarm'
   end as status,
-    r.full_name || ' default branch ' || r.default_branch || case when(b.required_conversation_resolution_enabled is not null and (b.required_conversation_resolution_enabled)::bool = true) then ' requires ' else ' does not require ' end || 'conversation resolution before merge.' as reason,
+  r.full_name || ' default branch ' || r.default_branch || case when(b.required_conversation_resolution_enabled is not null and (b.required_conversation_resolution_enabled)::bool = true) then ' requires ' else ' does not require ' end || 'conversation resolution before merge.' as reason,
   -- Additional Dimensions
-    r.full_name
+  r.full_name
 from
   github_my_repository as r
   left join github_branch_protection as b on r.full_name = b.repository_full_name and r.default_branch = b.name;

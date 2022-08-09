@@ -33,8 +33,7 @@ benchmark "cis_supply_chain_v100_4_2" {
   title         = "4.2 Access to Artifacts"
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_4_2.md")
   children = [
-    control.cis_supply_chain_v100_4_2_3,
-    control.cis_supply_chain_v100_4_2_5
+    control.cis_supply_chain_v100_4_2_3
   ]
 
   tags = merge(local.cis_supply_chain_v100_4_common_tags, {
@@ -47,19 +46,6 @@ control "cis_supply_chain_v100_4_2_3" {
   description   = "Enforce Multi-Factor Authentication (MFA) for user access to the package registry."
   sql           = query.org_two_factor_required.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_4_2_3.md")
-
-  tags = merge(local.cis_supply_chain_v100_4_2_common_tags, {
-    cis                   = "true"
-    cis_supply_chain_v100 = "true"
-    cis_type              = "manual"
-  })
-}
-
-control "cis_supply_chain_v100_4_2_5" {
-  title         = "4.2.5 Ensure anonymous access to artifacts is revoked"
-  description   = "Disable anonymous access to artifacts."
-  sql           = query.repo_manual_control.sql
-  documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_4_2_5.md")
 
   tags = merge(local.cis_supply_chain_v100_4_2_common_tags, {
     cis                   = "true"

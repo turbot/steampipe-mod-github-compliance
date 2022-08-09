@@ -1,5 +1,5 @@
 select
--- Required Columns
+  -- Required Columns
   r.full_name as resource,
   case
     when p.security is null then 'The repository is empty'
