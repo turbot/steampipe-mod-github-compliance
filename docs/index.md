@@ -6,10 +6,10 @@ repository: "https://github.com/turbot/steampipe-mod-github-compliance"
 
 Run security controls across all your AWS accounts to look for resources that are publicly accessible resources, shared with untrusted accounts, have insecure network configurations, and more.
 
-<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/main/docs/images/github_compliance_cis_v100_dashboard.png" width="50%" type="thumbnail"/>
-<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/main/docs/images/github_compliance_dashboard.png" width="50%" type="thumbnail"/>
-<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/main/docs/images/github_compliance_benchmark.png" width="50%" type="thumbnail"/>
-<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/main/docs/images/github_cis_v100_terminal.png" width="50%" type="thumbnail"/>
+<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/staging-branchv0.2/docs/images/github_compliance_cis_v100_dashboard.png" width="50%" type="thumbnail"/>
+<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/staging-branchv0.2/docs/images/github_compliance_dashboard.png" width="50%" type="thumbnail"/>
+<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/staging-branchv0.2/docs/images/github_compliance_benchmark.png" width="50%" type="thumbnail"/>
+<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/staging-branchv0.2/docs/images/github_cis_v100_terminal.png" width="50%" type="thumbnail"/>
 
 ## References
 
