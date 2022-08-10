@@ -2,11 +2,10 @@ select
   -- Required Columns
   r.full_name as resource,
   case
-    when p.security is null then 'The repository is empty'
-    when p.security is not null then 'ok'
-    else 'alarm'
+    when p.security is null then 'alarm'
+    else 'ok'
   end as status,
-  r.full_name || case when(p.security is not null) then ' has a ' else ' has no ' end || 'SECURITY.md file.' as reason,
+  r.full_name || case when(p.security is not null) then ' with ' else ' without ' end || 'SECURITY.md file.' as reason,
   -- Additional Dimensions
   r.full_name
 from
