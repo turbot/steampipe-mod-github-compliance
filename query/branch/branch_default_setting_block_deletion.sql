@@ -1,5 +1,5 @@
 select
-  -- Additional Columns
+  -- Required Columns
   r.full_name as resource,
   case
     when b.allow_deletions_enabled = 'false' then 'ok'
