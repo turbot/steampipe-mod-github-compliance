@@ -34,4 +34,4 @@ select
 from
   logins l
   left join repo r on l.login = r.author_login
-    and l.repository_full_name = r.repository_full_name;
+  and l.repository_full_name = r.repository_full_name;

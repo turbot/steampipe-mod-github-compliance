@@ -27,8 +27,8 @@ select
     when (hook ->> 'active' = 'true'
       and (hook -> 'config' ->> 'insecure_ssl' = '1'
       or hook -> 'config' ->> 'secret' is null
-      or hook -> 'config' ->> 'url' not like '%https:%')) then (hook ->> 'id') || ' is an insecure hook'
-    else (hook ->> 'id') || ' is a secure hook'
+      or hook -> 'config' ->> 'url' not like '%https:%')) then (hook ->> 'id') || ' is an insecure hook.'
+    else (hook ->> 'id') || ' is a secure hook.'
   end as reason,
   -- Additional Dimensions
   name

@@ -5,7 +5,11 @@ select
     when b.required_pull_request_reviews is not null and (b.required_pull_request_reviews -> 'dismiss_stale_reviews')::bool = true  then 'ok'
     else 'alarm'
   end as status,
-  r.full_name || ' default branch ' || r.default_branch || case when(b.required_pull_request_reviews is not null and (b.required_pull_request_reviews -> 'dismiss_stale_reviews')::bool = true) then ' stale reviews are dimissed.' else ' stale reviews are not dimissed.' end as reason,
+  r.full_name || ' default branch ' || r.default_branch || 
+  case 
+    when (b.required_pull_request_reviews is not null and (b.required_pull_request_reviews -> 'dismiss_stale_reviews')::bool = true) then ' stale reviews are dimissed.' 
+    else ' stale reviews are not dimissed.' 
+  end as reason,
   -- Additional Dimensions
   r.full_name
 from

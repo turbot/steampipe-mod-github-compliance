@@ -16,4 +16,6 @@ from
   join github_my_organization o on m.organization = o.login
 where
   role = 'admin'
-group by role, m.organization;
+group by 
+  role, 
+  m.organization;

@@ -33,7 +33,7 @@ select distinct
     else 'ok'
   end as status,
   case
-    when j.repository_full_name is null then 'No build steps defined as code.'
+    when j.repository_full_name is null then 'No build steps are defined as code.'
     else 'All build steps are defined as code.'
   end as reason,
   -- Required Dimensions

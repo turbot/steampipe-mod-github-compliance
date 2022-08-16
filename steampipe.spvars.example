@@ -1,5 +1,5 @@
 # List of trusted repository admins
-trusted_repo_admin = ["abc20", "abc21"]
+trusted_repo_admins = ["abc20", "abc21"]
 
 # List of trusted issue admins
-trusted_issue_admin = ["abc20", "abc21"]
+trusted_issue_admins = ["abc20", "abc21"]

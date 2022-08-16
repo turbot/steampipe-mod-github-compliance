@@ -122,7 +122,7 @@ control "cis_supply_chain_v100_2_4_2" {
 control "cis_supply_chain_v100_2_4_6" {
   title         = "2.4.6 Ensure pipeline steps sign the SBOM produced"
   description   = "An SBOM is a file that specifies each component of software or a build process. It should be generated after every pipeline run. After it is generated, it must then be signed."
-  sql           = query.default_branch_pipeline_must_have_jobs_with_sobm_generation.sql
+  sql           = query.default_branch_pipeline_must_have_jobs_with_sbom_generation.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_2_4_6.md")
 
   tags = merge(local.cis_supply_chain_v100_2_4_common_tags, {

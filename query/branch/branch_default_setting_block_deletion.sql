@@ -16,4 +16,4 @@ select
   r.full_name
 from
   github_my_repository as r
-  left join github_branch_protection as b on r.full_name = b.repository_full_name and r.default_branch = b.name and r.fork = 'false'
+  left join github_branch_protection as b on r.full_name = b.repository_full_name and r.default_branch = b.name and r.fork = 'false';

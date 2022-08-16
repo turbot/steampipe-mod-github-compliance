@@ -1,10 +1,10 @@
-variable "trusted_repo_admin" {
+variable "trusted_repo_admins" {
   type        = list(string)
   default     = [""]
   description = "A list of github users allowed to delete the repository."
 }
 
-variable "trusted_issue_admin" {
+variable "trusted_issue_admins" {
   type        = list(string)
   default     = [""]
   description = "A list of github users allowed to delete the issue."
@@ -243,7 +243,7 @@ benchmark "cis_supply_chain_v100_1_2" {
     control.cis_supply_chain_v100_1_2_2,
     control.cis_supply_chain_v100_1_2_3,
     control.cis_supply_chain_v100_1_2_4,
-    control.cis_supply_chain_v100_1_2_7,
+    control.cis_supply_chain_v100_1_2_7
   ]
 
   tags = merge(local.cis_supply_chain_v100_1_2_common_tags, {
@@ -284,9 +284,9 @@ control "cis_supply_chain_v100_1_2_3" {
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_2_3.md")
   sql           = query.repo_deletion_limited_to_trusted_users.sql
 
-  param "trusted_repo_admin" {
+  param "trusted_repo_admins" {
     description = "A list of github users allowed to delete the repository."
-    default     = var.trusted_repo_admin
+    default     = var.trusted_repo_admins
   }
 
   tags = merge(local.cis_supply_chain_v100_1_2_common_tags, {
@@ -302,9 +302,9 @@ control "cis_supply_chain_v100_1_2_4" {
   sql           = query.repo_issue_deletion_limited_to_trusted_users.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_2_4.md")
 
-  param "trusted_issue_admin" {
+  param "trusted_issue_admins" {
     description = "A list of github users allowed to delete the issue."
-    default     = var.trusted_issue_admin
+    default     = var.trusted_issue_admins
   }
 
   tags = merge(local.cis_supply_chain_v100_1_2_common_tags, {
