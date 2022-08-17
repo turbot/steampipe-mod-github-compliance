@@ -6,7 +6,7 @@ Code owners are trusted users that are responsible for reviewing and managing an
 
 Configuring code owners protects data by verifying that trusted users will notice and review every edit, thus preventing unwanted or malicious changes from potentially compromising sensitive code or configurations.
 
-*Note* Code owner users will receive notifications for every change that occurs to the code and subsequently added as reviewers of pull requests automatically.
+**Note** Code owner users will receive notifications for every change that occurs to the code and subsequently added as reviewers of pull requests automatically.
 
 ## Audit
 

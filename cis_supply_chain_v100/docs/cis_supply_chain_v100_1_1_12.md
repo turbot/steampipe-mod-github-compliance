@@ -6,7 +6,7 @@ Ensure every commit in a pull request is signed and verified before merging.
 
 Signing commits, or requiring to sign commits, gives other users confidence about the origin of a specific code change. It ensures that the author of the change is not hidden and is verified by the version control system, thus the change comes from a trusted source.
 
-*Note* Pull requests with unsigned commits cannot be merged.
+**Note** Pull requests with unsigned commits cannot be merged.
 
 ## Audit
 
