@@ -24,7 +24,7 @@ mod "github_compliance" {
 
   require {
     plugin "github" {
-      version = "0.18.0"
+      version = "0.19.0"
     }
   }
 }
