@@ -1,14 +1,28 @@
-# GitHub Compliance Mod for Steampipe
+---
+repository: "https://github.com/turbot/steampipe-mod-github-compliance"
+---
 
-30+ checks covering industry defined security best practices for GitHub.
+# GitHub Compliance Mod
 
-**Includes full support for CIS Software Supply Chain Security Guide v1.0.0**.
+Run security controls across all your GitHub organizations and repositories to look for branch protection rules, organization member privileges, security settings, and more.
 
-Run checks in a dashboard:
-![image](https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/main/docs/github_compliance_cis_v100_dashboard.png)
+<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/main/docs/images/github_compliance_cis_v100_dashboard.png" width="50%" type="thumbnail"/>
+<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/main/docs/images/github_compliance_dashboard.png" width="50%" type="thumbnail"/>
+<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/main/docs/images/github_compliance_benchmark.png" width="50%" type="thumbnail"/>
+<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/main/docs/images/github_cis_v100_terminal.png" width="50%" type="thumbnail"/>
 
-Or in a terminal:
-![image](https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/main/docs/github_cis_v100_terminal.png)
+## References
+
+[GitHub](https://github.com/) is a provider of Internet hosting for software development and version control using Git.
+
+[Steampipe](https://steampipe.io) is an open source CLI to instantly query cloud APIs using SQL.
+
+[Steampipe Mods](https://steampipe.io/docs/reference/mod-resources#mod) are collections of `named queries`, and codified `controls` that can be used to test current configuration of your cloud resources against a desired configuration.
+
+## Documentation
+
+- **[Benchmarks and controls →](https://hub.steampipe.io/mods/turbot/steampipe-mod-github-compliance/controls)**
+- **[Named queries →](https://hub.steampipe.io/mods/turbot/steampipe-mod-github-compliance/queries)**
 
 ## Getting started
 
@@ -97,7 +111,7 @@ These are only some of the ways you can set variables. For a full list, please s
 
 ## Contributing
 
-If you have an idea for additional compliance controls, or just want to help maintain and extend this mod ([or others](https://github.com/topics/steampipe-mod)) we would love you to join the community and start contributing. (Even if you just want to help with the docs.)
+If you have an idea for additional controls or just want to help maintain and extend this mod ([or others](https://github.com/topics/steampipe-mod)) we would love you to join the community and start contributing.
 
 - **[Join our Slack community →](https://steampipe.io/community/join)** and hang out with other Mod developers.
 
