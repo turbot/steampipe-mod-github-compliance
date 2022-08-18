@@ -64,7 +64,7 @@ steampipe check benchmark.cis_supply_chain_v100
 Run a specific control:
 
 ```sh
-steampipe check control.cis_supply_chain_v100_1_1_1
+steampipe check control.cis_supply_chain_v100_1_1_3
 ```
 
 Different output formats are also available, for more information please see
