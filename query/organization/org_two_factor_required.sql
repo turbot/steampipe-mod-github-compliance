@@ -5,7 +5,7 @@ select
     when two_factor_requirement_enabled then 'ok'
     else 'alarm'
   end as status,
-  coalesce(name, login) || case when (two_factor_requirement_enabled)::bool then ' members require 2FA' else ' not enabled with 2FA' end || '.' as reason,
+  coalesce(name, login) || case when (two_factor_requirement_enabled)::bool then ' members require MFA' else ' not enabled with MFA' end || '.' as reason,
   -- Additional Dimensions
   login
 from

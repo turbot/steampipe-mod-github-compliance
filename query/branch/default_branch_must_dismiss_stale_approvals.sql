@@ -7,8 +7,8 @@ select
   end as status,
   r.full_name || ' default branch ' || r.default_branch || 
   case 
-    when (b.required_pull_request_reviews is not null and (b.required_pull_request_reviews -> 'dismiss_stale_reviews')::bool = true) then ' stale reviews are dimissed.' 
-    else ' stale reviews are not dimissed.' 
+    when (b.required_pull_request_reviews is not null and (b.required_pull_request_reviews -> 'dismiss_stale_reviews')::bool = true) then ' stale reviews are dismissed.' 
+    else ' stale reviews are not dismissed.' 
   end as reason,
   -- Additional Dimensions
   r.full_name
