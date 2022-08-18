@@ -5,10 +5,10 @@
 **Includes full support for CIS Software Supply Chain Security Guide v1.0.0**.
 
 Run checks in a dashboard:
-![image](https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/main/docs/github_compliance_cis_v100_dashboard.png)
+![image](https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/main/docs/images/github_compliance_cis_v100_dashboard.png)
 
 Or in a terminal:
-![image](https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/main/docs/github_cis_v100_terminal.png)
+![image](https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/main/docs/images/github_cis_v100_terminal.png)
 
 ## Getting started
 
