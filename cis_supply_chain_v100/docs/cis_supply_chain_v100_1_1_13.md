@@ -6,7 +6,7 @@ Linear history is the name for Git history where all commits are listed in chron
 
 Enforcing linear history produces a clear record of activity, and as such it offers specific advantages: it is easier to follow, it is easier to revert a change, and bugs can be found more easily.
 
-**Note** Pull requests cannot be merged except by squash or rebase merge.
+**Note**: Pull requests cannot be merged except by squash or rebase merge.
 
 ## Audit
 

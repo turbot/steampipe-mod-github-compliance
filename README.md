@@ -2,20 +2,13 @@
 
 30+ checks covering industry defined security best practices for GitHub.
 
-**Includes full support for v1.0.0 CIS Software Supply Chain Security Guide**.
+**Includes full support for CIS Software Supply Chain Security Guide v1.0.0**.
 
 Run checks in a dashboard:
 ![image](https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/staging-branchv0.2/docs/github_compliance_cis_v100_dashboard.png)
 
 Or in a terminal:
 ![image](https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/staging-branchv0.2/docs/github_cis_v100_terminal.png)
-
-Includes support for:
-
-1. [Source Code](https://hub.steampipe.io/mods/turbot/github_compliance/controls/benchmark.cis_v100_1)
-2. [Build Pipelines](https://hub.steampipe.io/mods/turbot/github_compliance/controls/benchmark.cis_v100_2)
-3. [Dependencies](https://hub.steampipe.io/mods/turbot/github_compliance/controls/benchmark.cis_v100_3)
-4. [Artifacts](https://hub.steampipe.io/mods/turbot/github_compliance/controls/benchmark.cis_v100_4)
 
 ## Getting started
 
@@ -89,13 +82,13 @@ Few benchmarks have [input variables](https://steampipe.io/docs/using-steampipe/
 - Pass in a value on the command line:
 
   ```shell
-  steampipe check control.cis_supply_chain_v100_1_2_3 --var='trusted_repo_admins=["abc22", "bbc22"]'
+  steampipe check control.cis_supply_chain_v100_1_2_3 --var='trusted_repo_admins=["user_1", "user_2"]'
   ```
 
 - Set an environment variable:
 
   ```shell
-  SP_VAR_trusted_repo_admins='["abc22", "bbc22"]' steampipe check control.cis_supply_chain_v100_1_2_3
+  SP_VAR_trusted_repo_admins='["user_1", "user_2"]' steampipe check control.cis_supply_chain_v100_1_2_3
   ```
 
   - Note: When using environment variables, if the variable is defined in `steampipe.spvars` or passed in through the command line, either of those will take precedence over the environment variable value. For more information on variable definition precedence, please see the link below.

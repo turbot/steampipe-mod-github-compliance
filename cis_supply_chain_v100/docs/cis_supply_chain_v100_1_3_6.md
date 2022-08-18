@@ -6,7 +6,7 @@ Existing members of an organization can invite new members to join; however, new
 
 Ensuring new members of an organization have company-approved email prevents existing members of the organization from inviting arbitrary new users to join. Without this verification, they can invite anyone who is using the organization's version control system or has an active email account, thus allowing outside users (and potential threat actors) to easily gain access to company private code and resources. This practice will subsequently reduce the chance of human error or typos when inviting a new member.
 
-**Note** Existing members would not be able to invite new users who do not have a company-approved email address.
+**Note**: Existing members would not be able to invite new users who do not have a company-approved email address.
 
 ## Audit
 

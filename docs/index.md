@@ -4,7 +4,7 @@ repository: "https://github.com/turbot/steampipe-mod-github-compliance"
 
 # GitHub Compliance Mod
 
-Run security controls across all your GitHub repositories to look for branch protection rules, organization member privileges, security settings, and more.
+Run security controls across all your GitHub organizations and repositories to look for branch protection rules, organization member privileges, security settings, and more.
 
 <img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/staging-branchv0.2/docs/images/github_compliance_cis_v100_dashboard.png" width="50%" type="thumbnail"/>
 <img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/staging-branchv0.2/docs/images/github_compliance_dashboard.png" width="50%" type="thumbnail"/>
@@ -90,23 +90,19 @@ This mod uses the credentials configured in the [Steampipe GitHub plugin](https:
 
 ### Configuration
 
-No extra configuration is required.
-
-### Configuration
-
 Few benchmarks have [input variables](https://steampipe.io/docs/using-steampipe/mod-variables) that can be configured to better match your environment and requirements. Each variable has a default defined in its source file, e.g., `cis_supply_chain_v100/section_1.sp`, but these can be overwritten in several ways:
 
 - Copy and rename the `steampipe.spvars.example` file to `steampipe.spvars`, and then modify the variable values inside that file
 - Pass in a value on the command line:
 
   ```shell
-  steampipe check control.cis_supply_chain_v100_1_2_3 --var='trusted_repo_admins=["abc22", "bbc22"]'
+  steampipe check control.cis_supply_chain_v100_1_2_3 --var='trusted_repo_admins=["user_1", "user_2"]'
   ```
 
 - Set an environment variable:
 
   ```shell
-  SP_VAR_trusted_repo_admins='["abc22", "bbc22"]' steampipe check control.cis_supply_chain_v100_1_2_3
+  SP_VAR_trusted_repo_admins='["user_1", "user_2"]' steampipe check control.cis_supply_chain_v100_1_2_3
   ```
 
   - Note: When using environment variables, if the variable is defined in `steampipe.spvars` or passed in through the command line, either of those will take precedence over the environment variable value. For more information on variable definition precedence, please see the link below.

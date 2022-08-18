@@ -225,7 +225,7 @@ control "cis_supply_chain_v100_1_1_16" {
 control "cis_supply_chain_v100_1_1_17" {
   title         = "1.1.17 Ensure branch deletions are denied"
   description   = "Ensure that users with only push access are incapable of deleting a protected branch."
-  sql           = query.branch_default_setting_block_deletion.sql
+  sql           = query.default_branch_setting_block_deletion.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_1_17.md")
 
   tags = merge(local.cis_supply_chain_v100_1_1_common_tags, {
@@ -285,7 +285,7 @@ control "cis_supply_chain_v100_1_2_3" {
   sql           = query.repo_deletion_limited_to_trusted_users.sql
 
   param "trusted_repo_admins" {
-    description = "A list of github users allowed to delete the repository."
+    description = "A list of GitHub users allowed to delete repositories."
     default     = var.trusted_repo_admins
   }
 
@@ -303,7 +303,7 @@ control "cis_supply_chain_v100_1_2_4" {
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_2_4.md")
 
   param "trusted_issue_admins" {
-    description = "A list of github users allowed to delete the issue."
+    description = "A list of GitHub users allowed to delete issues."
     default     = var.trusted_issue_admins
   }
 
@@ -347,7 +347,7 @@ benchmark "cis_supply_chain_v100_1_3" {
 control "cis_supply_chain_v100_1_3_1" {
   title         = "1.3.1 Ensure inactive users are reviewed and removed periodically"
   description   = "Track inactive user accounts and periodically remove them."
-  sql           = query.repository_inactive_members_review.sql
+  sql           = query.repo_inactive_members_review.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_3_1.md")
 
   tags = merge(local.cis_supply_chain_v100_1_3_common_tags, {
@@ -360,7 +360,7 @@ control "cis_supply_chain_v100_1_3_1" {
 control "cis_supply_chain_v100_1_3_3" {
   title         = "1.3.3 Ensure minimum number of administrators are set for the organization"
   description   = "Ensure the organization has a minimum number of administrators."
-  sql           = query.organization_minimum_administrators_set.sql
+  sql           = query.org_minimum_administrators_set.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_3_3.md")
 
   tags = merge(local.cis_supply_chain_v100_1_3_common_tags, {

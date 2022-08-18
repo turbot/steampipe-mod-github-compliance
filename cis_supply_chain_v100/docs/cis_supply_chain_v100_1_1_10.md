@@ -6,7 +6,7 @@ Organizations should make sure each suggested code change is in full sync with t
 
 Git branches can easily become outdated since the origin code repository is constantly being edited. This means engineers working on separate code branches can accidentally include outdated code with potential security issues that might have already been fixed, overriding the potential solutions for those security issues when merging their own changes.
 
-**Note** If enforced, outdated branches would not be able to be merged into their origin repository without first being updated to contain any recent changes.
+**Note**: If enforced, outdated branches would not be able to be merged into their origin repository without first being updated to contain any recent changes.
 
 ## Audit
 
