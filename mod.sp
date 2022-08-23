@@ -7,6 +7,12 @@ locals {
   }
 }
 
+variable "repo_pattern" {
+  type        = string
+  default     = "steampipe-mod"
+  description = "A regex to match github_my_repository.full_name."
+}
+
 mod "github_compliance" {
   # hub metadata
   title         = "GitHub Compliance"

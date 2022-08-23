@@ -1,6 +1,6 @@
 variable "trusted_repo_admins" {
   type        = list(string)
-  default     = [""]
+  default     = ["dboeke","e-gineer","kaidaguerre","vhadianto","johnsmyth","cbruno10"]
   description = "A list of github users allowed to delete the repository."
 }
 
@@ -287,6 +287,11 @@ control "cis_supply_chain_v100_1_2_3" {
   param "trusted_repo_admins" {
     description = "A list of GitHub users allowed to delete repositories."
     default     = var.trusted_repo_admins
+  }
+
+  param "repo_pattern" {
+    description = "A regex to match github_my_repository.full_name."
+    default     = var.repo_pattern
   }
 
   tags = merge(local.cis_supply_chain_v100_1_2_common_tags, {
