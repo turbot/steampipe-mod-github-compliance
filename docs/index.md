@@ -21,8 +21,8 @@ Run security controls across all your GitHub organizations and repositories to l
 
 ## Documentation
 
-- **[Benchmarks and controls →](https://hub.steampipe.io/mods/turbot/steampipe-mod-github-compliance/controls)**
-- **[Named queries →](https://hub.steampipe.io/mods/turbot/steampipe-mod-github-compliance/queries)**
+- **[Benchmarks and controls →](https://hub.steampipe.io/mods/turbot/github_compliance/controls)**
+- **[Named queries →](https://hub.steampipe.io/mods/turbot/github_compliance/queries)**
 
 ## Getting started
 
