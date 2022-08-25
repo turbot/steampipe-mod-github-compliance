@@ -1,11 +1,11 @@
-with repositories as (
+with my_repos as (
   select
-    default_branch,
-    full_name
-  from
+    full_name,
+    default_branch
+  from 
     github_my_repository
-  order by
-    full_name
+  where
+    full_name ~ $1
 ),
 pipelines as (
   select
@@ -15,7 +15,7 @@ pipelines as (
   from
     github_workflow
   where
-    repository_full_name in (select full_name from repositories)
+    repository_full_name in (select full_name from my_repos)
 ),
 vulnerability_task_repos as (
   select distinct
@@ -45,5 +45,5 @@ select
   -- Additional Dimensions
   r.full_name
 from
-  repositories as r
+  my_repos as r
   left join vulnerability_task_repos as v on r.full_name = v.repository_full_name;

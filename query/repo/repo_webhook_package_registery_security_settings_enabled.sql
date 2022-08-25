@@ -12,6 +12,8 @@ with hooks_info as (
   from
     github_my_repository,
     jsonb_array_elements(hooks) h
+  where
+    full_name ~ $1
 )
 select
   -- Required Columns

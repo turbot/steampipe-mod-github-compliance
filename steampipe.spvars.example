@@ -3,3 +3,6 @@ trusted_repo_admins = ["user_1", "user_2"]
 
 # List of trusted issue admins
 trusted_issue_admins = ["user_1", "user_2"]
+
+# Regex pattern of repositories to run the checks against
+repo_pattern="steampipe-(mod|plugin)"

@@ -47,6 +47,11 @@ control "cis_supply_chain_v100_2_3_1" {
   sql           = query.default_branch_all_build_steps_as_code.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_2_3_1.md")
 
+  param "repo_pattern" {
+    description = "A regex to match github_my_repository.full_name."
+    default     = var.repo_pattern
+  }
+
   tags = merge(local.cis_supply_chain_v100_2_3_common_tags, {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
@@ -73,6 +78,11 @@ control "cis_supply_chain_v100_2_3_7" {
   sql           = query.default_branch_pipelines_scan_for_vulnerabilities.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_2_3_7.md")
 
+  param "repo_pattern" {
+    description = "A regex to match github_my_repository.full_name."
+    default     = var.repo_pattern
+  }
+
   tags = merge(local.cis_supply_chain_v100_2_3_common_tags, {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
@@ -85,6 +95,11 @@ control "cis_supply_chain_v100_2_3_8" {
   description   = "Detect and prevent sensitive data, such as confidential ID numbers, passwords, etc., inpipelines."
   sql           = query.default_branch_pipelines_scanners_set_to_prevent_sensitive_data.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_2_3_8.md")
+
+  param "repo_pattern" {
+    description = "A regex to match github_my_repository.full_name."
+    default     = var.repo_pattern
+  }
 
   tags = merge(local.cis_supply_chain_v100_2_3_common_tags, {
     cis                   = "true"
@@ -112,6 +127,11 @@ control "cis_supply_chain_v100_2_4_2" {
   sql           = query.default_branch_pipeline_locks_external_dependencies_for_build_process.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_2_4_2.md")
 
+  param "repo_pattern" {
+    description = "A regex to match github_my_repository.full_name."
+    default     = var.repo_pattern
+  }
+
   tags = merge(local.cis_supply_chain_v100_2_4_common_tags, {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
@@ -125,6 +145,11 @@ control "cis_supply_chain_v100_2_4_6" {
   sql           = query.default_branch_pipeline_must_have_jobs_with_sbom_generation.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_2_4_6.md")
 
+  param "repo_pattern" {
+    description = "A regex to match github_my_repository.full_name."
+    default     = var.repo_pattern
+  }
+  
   tags = merge(local.cis_supply_chain_v100_2_4_common_tags, {
     cis                   = "true"
     cis_supply_chain_v100 = "true"

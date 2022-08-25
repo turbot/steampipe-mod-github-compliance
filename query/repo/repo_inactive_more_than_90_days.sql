@@ -1,3 +1,14 @@
+with my_repos as (
+  select
+    full_name,
+    default_branch,
+    fork,
+    updated_at
+  from 
+    github_my_repository
+  where
+    full_name ~ $1
+)
 select
   -- Required Columns
   full_name as resource,
@@ -12,7 +23,7 @@ select
   -- Additional Dimensions
   full_name
 from
-  github_my_repository
+  my_repos
 where
   not fork
 order by

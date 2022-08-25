@@ -44,6 +44,11 @@ control "cis_supply_chain_v100_3_1_7" {
   sql           = query.default_branch_pipeline_locks_external_dependencies_for_build_process.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_3_1_7.md")
 
+  param "repo_pattern" {
+    description = "A regex to match github_my_repository.full_name."
+    default     = var.repo_pattern
+  }
+
   tags = merge(local.cis_supply_chain_v100_3_1_common_tags, {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
@@ -70,6 +75,11 @@ control "cis_supply_chain_v100_3_2_2" {
   sql           = query.default_branch_pipelines_scan_for_vulnerabilities.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_3_2_2.md")
 
+  param "repo_pattern" {
+    description = "A regex to match github_my_repository.full_name."
+    default     = var.repo_pattern
+  }
+
   tags = merge(local.cis_supply_chain_v100_3_1_common_tags, {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
@@ -83,6 +93,11 @@ control "cis_supply_chain_v100_3_2_3" {
   sql           = query.default_branch_pipelines_scan_for_vulnerabilities.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_3_2_3.md")
 
+  param "repo_pattern" {
+    description = "A regex to match github_my_repository.full_name."
+    default     = var.repo_pattern
+  }
+  
   tags = merge(local.cis_supply_chain_v100_3_1_common_tags, {
     cis                   = "true"
     cis_supply_chain_v100 = "true"

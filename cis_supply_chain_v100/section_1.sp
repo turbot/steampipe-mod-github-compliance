@@ -1,6 +1,6 @@
 variable "trusted_repo_admins" {
   type        = list(string)
-  default     = [""]
+  default     = ["user_1", "user_2"]
   description = "A list of github users allowed to delete the repository."
 }
 
@@ -72,6 +72,11 @@ control "cis_supply_chain_v100_1_1_3" {
   sql           = query.default_branch_requires_2_pull_request_reviews.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_1_3.md")
 
+  param "repo_pattern" {
+    description = "A regex to match github_my_repository.full_name."
+    default     = var.repo_pattern
+  }
+
   tags = merge(local.cis_supply_chain_v100_1_1_common_tags, {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
@@ -84,6 +89,11 @@ control "cis_supply_chain_v100_1_1_4" {
   description   = "Ensure that when a proposed code change is updated, previous approvals are declined and new approvals are required."
   sql           = query.default_branch_must_dismiss_stale_approvals.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_1_4.md")
+
+  param "repo_pattern" {
+    description = "A regex to match github_my_repository.full_name."
+    default     = var.repo_pattern
+  }
 
   tags = merge(local.cis_supply_chain_v100_1_1_common_tags, {
     cis                   = "true"
@@ -98,6 +108,11 @@ control "cis_supply_chain_v100_1_1_5" {
   sql           = query.default_branch_code_change_review_dismissal_restrictions.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_1_5.md")
 
+  param "repo_pattern" {
+    description = "A regex to match github_my_repository.full_name."
+    default     = var.repo_pattern
+  }
+
   tags = merge(local.cis_supply_chain_v100_1_1_common_tags, {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
@@ -110,6 +125,11 @@ control "cis_supply_chain_v100_1_1_6" {
   description   = "Code owners are trusted users that are responsible for reviewing and managing an important piece of code or configuration. An organization is advised to set code owners for every extremely sensitive code or configuration."
   sql           = query.default_branch_requires_code_owners_review.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_1_6.md")
+
+  param "repo_pattern" {
+    description = "A regex to match github_my_repository.full_name."
+    default     = var.repo_pattern
+  }
 
   tags = merge(local.cis_supply_chain_v100_1_1_common_tags, {
     cis                   = "true"
@@ -124,6 +144,11 @@ control "cis_supply_chain_v100_1_1_9" {
   sql           = query.default_branch_requires_status_checks.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_1_9.md")
 
+  param "repo_pattern" {
+    description = "A regex to match github_my_repository.full_name."
+    default     = var.repo_pattern
+  }
+
   tags = merge(local.cis_supply_chain_v100_1_1_common_tags, {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
@@ -136,6 +161,11 @@ control "cis_supply_chain_v100_1_1_10" {
   description   = "Organizations should make sure each suggested code change is in full sync with the existing state of its origin code repository before allowing merging."
   sql           = query.repo_open_branches_are_upto_date_before_merge.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_1_10.md")
+
+  param "repo_pattern" {
+    description = "A regex to match github_my_repository.full_name."
+    default     = var.repo_pattern
+  }
 
   tags = merge(local.cis_supply_chain_v100_1_1_common_tags, {
     cis                   = "true"
@@ -150,6 +180,11 @@ control "cis_supply_chain_v100_1_1_11" {
   sql           = query.repo_no_open_comments.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_1_11.md")
 
+  param "repo_pattern" {
+    description = "A regex to match github_my_repository.full_name."
+    default     = var.repo_pattern
+  }
+
   tags = merge(local.cis_supply_chain_v100_1_1_common_tags, {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
@@ -162,6 +197,11 @@ control "cis_supply_chain_v100_1_1_12" {
   description   = "Ensure every commit in a pull request is signed and verified before merging."
   sql           = query.default_branch_requires_signed_commits.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_1_12.md")
+
+  param "repo_pattern" {
+    description = "A regex to match github_my_repository.full_name."
+    default     = var.repo_pattern
+  }
 
   tags = merge(local.cis_supply_chain_v100_1_1_common_tags, {
     cis                   = "true"
@@ -176,6 +216,11 @@ control "cis_supply_chain_v100_1_1_13" {
   sql           = query.repo_linear_history_enabled.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_1_13.md")
 
+  param "repo_pattern" {
+    description = "A regex to match github_my_repository.full_name."
+    default     = var.repo_pattern
+  }
+
   tags = merge(local.cis_supply_chain_v100_1_1_common_tags, {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
@@ -188,6 +233,11 @@ control "cis_supply_chain_v100_1_1_14" {
   description   = "Ensure administrators are subject to branch protection rules."
   sql           = query.default_branch_protections_apply_to_admins.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_1_14.md")
+
+  param "repo_pattern" {
+    description = "A regex to match github_my_repository.full_name."
+    default     = var.repo_pattern
+  }
 
   tags = merge(local.cis_supply_chain_v100_1_1_common_tags, {
     cis                   = "true"
@@ -202,6 +252,11 @@ control "cis_supply_chain_v100_1_1_15" {
   sql           = query.default_branch_restrict_push_and_merge.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_1_15.md")
 
+  param "repo_pattern" {
+    description = "A regex to match github_my_repository.full_name."
+    default     = var.repo_pattern
+  }
+
   tags = merge(local.cis_supply_chain_v100_1_1_common_tags, {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
@@ -215,6 +270,11 @@ control "cis_supply_chain_v100_1_1_16" {
   sql           = query.default_branch_blocks_force_push.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_1_16.md")
 
+  param "repo_pattern" {
+    description = "A regex to match github_my_repository.full_name."
+    default     = var.repo_pattern
+  }
+
   tags = merge(local.cis_supply_chain_v100_1_1_common_tags, {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
@@ -227,6 +287,11 @@ control "cis_supply_chain_v100_1_1_17" {
   description   = "Ensure that users with only push access are incapable of deleting a protected branch."
   sql           = query.default_branch_setting_block_deletion.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_1_17.md")
+
+  param "repo_pattern" {
+    description = "A regex to match github_my_repository.full_name."
+    default     = var.repo_pattern
+  }
 
   tags = merge(local.cis_supply_chain_v100_1_1_common_tags, {
     cis                   = "true"
@@ -257,6 +322,11 @@ control "cis_supply_chain_v100_1_2_1" {
   sql           = query.public_repo_has_security_md_file.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_2_1.md")
 
+  param "repo_pattern" {
+    description = "A regex to match github_my_repository.full_name."
+    default     = var.repo_pattern
+  }
+  
   tags = merge(local.cis_supply_chain_v100_1_2_common_tags, {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
@@ -289,6 +359,11 @@ control "cis_supply_chain_v100_1_2_3" {
     default     = var.trusted_repo_admins
   }
 
+  param "repo_pattern" {
+    description = "A regex to match github_my_repository.full_name."
+    default     = var.repo_pattern
+  }
+
   tags = merge(local.cis_supply_chain_v100_1_2_common_tags, {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
@@ -307,6 +382,11 @@ control "cis_supply_chain_v100_1_2_4" {
     default     = var.trusted_issue_admins
   }
 
+  param "repo_pattern" {
+    description = "A regex to match github_my_repository.full_name."
+    default     = var.repo_pattern
+  }
+
   tags = merge(local.cis_supply_chain_v100_1_2_common_tags, {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
@@ -319,6 +399,11 @@ control "cis_supply_chain_v100_1_2_7" {
   description   = "Ensure inactive repositories are reviewed and archived periodically."
   sql           = query.repo_inactive_more_than_90_days.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_2_7.md")
+
+  param "repo_pattern" {
+    description = "A regex to match github_my_repository.full_name."
+    default     = var.repo_pattern
+  }
 
   tags = merge(local.cis_supply_chain_v100_1_2_common_tags, {
     cis                   = "true"
@@ -349,6 +434,11 @@ control "cis_supply_chain_v100_1_3_1" {
   description   = "Track inactive user accounts and periodically remove them."
   sql           = query.repo_inactive_members_review.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_3_1.md")
+
+  param "repo_pattern" {
+    description = "A regex to match github_my_repository.full_name."
+    default     = var.repo_pattern
+  }
 
   tags = merge(local.cis_supply_chain_v100_1_3_common_tags, {
     cis                   = "true"
@@ -388,6 +478,11 @@ control "cis_supply_chain_v100_1_3_7" {
   description   = "Ensure every repository has two users with administrative permissions."
   sql           = query.repo_should_have_two_admins.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_3_7.md")
+
+  param "repo_pattern" {
+    description = "A regex to match github_my_repository.full_name."
+    default     = var.repo_pattern
+  }
 
   tags = merge(local.cis_supply_chain_v100_1_3_common_tags, {
     cis                   = "true"

@@ -72,6 +72,11 @@ control "cis_supply_chain_v100_4_3_4" {
   sql           = query.repo_webhook_package_registery_security_settings_enabled.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_4_3_4.md")
 
+  param "repo_pattern" {
+    description = "A regex to match github_my_repository.full_name."
+    default     = var.repo_pattern
+  }
+  
   tags = merge(local.cis_supply_chain_v100_4_3_common_tags, {
     cis                   = "true"
     cis_supply_chain_v100 = "true"

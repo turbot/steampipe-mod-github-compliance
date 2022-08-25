@@ -7,6 +7,12 @@ locals {
   }
 }
 
+variable "repo_pattern" {
+  type        = string
+  default     = "ops"
+  description = "A regex to match github_my_repository.full_name. To pass multiple values, seperate them with a pipe. Example: 'steampipe-(mod|plugin)'"
+}
+
 mod "github_compliance" {
   # hub metadata
   title         = "GitHub Compliance"

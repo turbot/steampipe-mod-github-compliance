@@ -1,10 +1,11 @@
-with repositories as (
+with my_repos as (
   select
-    full_name
-  from
+    full_name,
+    default_branch
+  from 
     github_my_repository
-  order by
-    full_name
+  where
+    full_name ~ $1
 ),
 pipelines as (
   select
@@ -14,7 +15,7 @@ pipelines as (
   from
     github_workflow
   where
-    repository_full_name in (select full_name from repositories)
+    repository_full_name in (select full_name from my_repos)
 ),
 bulid_jobs as (
   select distinct
@@ -39,5 +40,5 @@ select distinct
   -- Required Dimensions
   r.full_name
 from
-  repositories as r
+  my_repos as r
   left join bulid_jobs as j on r.full_name = j.repository_full_name;
