@@ -3,3 +3,6 @@ trusted_repo_admins = ["user_1", "user_2"]
 
 # List of trusted issue admins
 trusted_issue_admins = ["user_1", "user_2"]
+
+# Regex pattern to match github_my_repository.full_name.
+repo_pattern = "steampipe-mod"

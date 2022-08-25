@@ -1,6 +1,6 @@
 variable "trusted_repo_admins" {
   type        = list(string)
-  default     = ["dboeke","e-gineer","kaidaguerre","vhadianto","johnsmyth","cbruno10"]
+  default     = ["user-1", "user-2"]
   description = "A list of github users allowed to delete the repository."
 }
 

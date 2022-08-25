@@ -1,7 +1,7 @@
 with my_repos as (
   select
     full_name
-  from 
+  from
     github_my_repository
   where
     full_name ~ $2
@@ -12,8 +12,8 @@ collaborators as (
     jsonb_array_elements(r.collaborators) as collaborator
   from
     github_repository r
-  join 
-    my_repos m 
+  join
+    my_repos m
   on
     m.full_name = r.full_name
   group by
@@ -40,10 +40,10 @@ select
   end as status,
   case
     when array_length(admins,1) - array_length($1::text[],1) > 0
-      then concat( 'Repository deletion permission allowed to untrusted users ', (to_jsonb(admins) - $1::text[])::text )
+      then concat( 'Repository deletion permission allowed to untrusted users ', to_jsonb(admins) - $1::text[] #>> '{0}', ', ', to_jsonb(admins) - $1::text[] #>> '{1}', ' and ', (jsonb_array_length(to_jsonb(admins) - $1::text[]) - 2)::text, ' more.')
     else 'Repository deletion permission limited to trusted users.'
   end as reason,
   -- Additional Dimensions
   full_name
 from
-  admins 
+  admins;
