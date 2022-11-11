@@ -399,7 +399,7 @@ control "cis_supply_chain_v100_1_3_7" {
 control "cis_supply_chain_v100_1_3_8" {
   title         = "1.3.8 Ensure strict base permissions are set for repositories"
   description   = "Base permissions define the permission level automatically granted to all organization members. Define strict base access permissions for all of the repositories in the organization, including new ones."
-  sql           = query.org_strict_default_permission.sql
+  sql           = query.org_default_repo_permission_none_read.sql
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_3_8.md")
 
   tags = merge(local.cis_supply_chain_v100_1_3_common_tags, {

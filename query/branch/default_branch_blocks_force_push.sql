@@ -12,7 +12,7 @@ select
     -- If not false or true, then null, which means no branch protection rule exists
     else ' is not protected.'
   end as reason,
-  -- Required Dimensions
+  -- Additional Dimensions
   r.full_name
 from
   github_my_repository as r

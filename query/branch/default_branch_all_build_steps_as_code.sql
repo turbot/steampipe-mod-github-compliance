@@ -36,7 +36,7 @@ select distinct
     when j.repository_full_name is null then 'No build steps are defined as code.'
     else 'All build steps are defined as code.'
   end as reason,
-  -- Required Dimensions
+  -- Additional Dimensions
   r.full_name
 from
   repositories as r
