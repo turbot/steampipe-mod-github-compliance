@@ -6,11 +6,9 @@ select
     when default_repo_permission = 'none' then 'ok'
     else 'alarm'
   end as status,
-  case
-    when default_repo_permission is null then
-      coalesce(name, login) || ' base permission unknown, manual verification required.'
-    else
-      coalesce(name, login) || ' base permission is ' || default_repo_permission || '.'
+  coalesce(name, login) || case
+    when default_repo_permission is null then ' base permission unknown, manual verification required.'
+    else ' base permission is ' || default_repo_permission || '.'
   end as reason,
   -- Additional Dimensions
   login
