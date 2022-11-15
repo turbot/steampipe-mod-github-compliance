@@ -1,3 +1,14 @@
+## v0.3 [2022-11-15]
+
+_What's new?_
+
+- Added the following new controls to the Other Compliance Checks benchmark: ([#24](https://github.com/turbot/steampipe-mod-github-compliance/pull/24))
+  - `organization_member_mfa_enabled`
+
+_Bug fixes_
+
+- Fixed `org_default_repo_permission_none` and `org_default_repo_permission_none_read` queries returning false positives if the authenticated user is not an owner of the organization. ([#23](https://github.com/turbot/steampipe-mod-github-compliance/pull/23))
+
 ## v0.2 [2022-11-10]
 
 _What's new?_
@@ -10,7 +21,7 @@ _Enhancements_
 
 _Bug fixes_
 
-- Fixed `org_two_factor_required` query returning false positives if the authenticated user not an owner of the organization. ([#16](https://github.com/turbot/steampipe-mod-github-compliance/pull/16))
+- Fixed `org_two_factor_required` query returning false positives if the authenticated user is not an owner of the organization. ([#16](https://github.com/turbot/steampipe-mod-github-compliance/pull/16))
 - Fixed broken links in index document. ([#12](https://github.com/turbot/steampipe-mod-github-compliance/pull/12))
 
 ## v0.1 [2022-08-18]
