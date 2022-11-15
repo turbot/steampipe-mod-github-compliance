@@ -2,13 +2,13 @@ select
   -- Required Columns
   html_url as resource,
   case
-    when default_repo_permission is null then 'skip'
+    when default_repo_permission is null then 'info'
     when default_repo_permission = 'none' then 'ok'
     else 'alarm'
   end as status,
-
   case
-    when default_repo_permission is null then 'user is not an owner of this repo'
+    when default_repo_permission is null then
+      coalesce(name, login) || ' base permission unknown, manual verification required.'
     else
       coalesce(name, login) || ' base permission is ' || default_repo_permission || '.'
   end as reason,
