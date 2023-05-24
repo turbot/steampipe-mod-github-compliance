@@ -1,13 +1,12 @@
 select
   -- Required Columns
-  r.full_name as resource,
-    case
-      when b.restrictions_apps || b.restrictions_teams || b.restrictions_users is not null then 'ok'
-      else 'alarm'
-    end as status,
-      r.full_name || ' default branch ' || r.default_branch || case when(b.restrictions_apps || b.restrictions_teams || b.restrictions_users is not null) then ' has ' else ' has no ' end || 'restrictions for code push and merge.' as reason,
+  url as resource,
+  case
+    when (default_branch_ref -> 'branch_protection_rule') is not null and (default_branch_ref -> 'branch_protection_rule' ->> 'restricts_pushes')::bool = true  then 'ok'
+    else 'alarm'
+  end as status,
+  name_with_owner || ' default branch ' || (default_branch_ref ->> 'name') || case when((default_branch_ref -> 'branch_protection_rule') is not null and (default_branch_ref -> 'branch_protection_rule' ->> 'restricts_pushes')::bool = true) then ' has ' else ' has no ' end || 'restrictions for code push and merge.' as reason,
   -- Additional Dimensions
-  r.full_name
+  name_with_owner
 from
-  github_my_repository as r
-  left join github_branch_protection as b on r.full_name = b.repository_full_name and r.default_branch = b.name;
+  github_my_repository;

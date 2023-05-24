@@ -1,16 +1,17 @@
 select
   -- Required Columns
-  html_url as resource,
+  o.url as resource,
   case
-    when two_factor_requirement_enabled is null then 'info' -- info is only available to owners
-    when two_factor_requirement_enabled then 'ok'
+    when ow.requires_two_factor_authentication is null then 'info' -- info is only available to owners
+    when ow.requires_two_factor_authentication then 'ok'
     else 'alarm'
   end as status,
-  coalesce(name, login) || case
-    when (two_factor_requirement_enabled)::bool is null then ' two-factor authentication unknown, manual verification required'
-    when (two_factor_requirement_enabled)::bool then ' requires two-factor authentication'
+  coalesce(o.name, o.login) || case
+    when (ow.requires_two_factor_authentication)::bool is null then ' two-factor authentication unknown, manual verification required'
+    when (ow.requires_two_factor_authentication)::bool then ' requires two-factor authentication'
     else ' does not require two-factor authentication' end || '.' as reason,
   -- Additional Dimensions
-  login
+  o.login
 from
-  github_my_organization;
+  github_my_organization o
+join github_organization_owner ow on o.login = ow.login;

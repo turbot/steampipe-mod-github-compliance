@@ -1,19 +1,18 @@
 select
   -- Required Columns
-  r.full_name as resource,
+  url as resource,
   case
-    when b.allow_force_pushes_enabled = 'false' then 'ok'
+    when (default_branch_ref -> 'branch_protection_rule' ->> 'allows_force_pushes') = 'false' then 'ok'
     else 'alarm'
   end as status,
-  r.full_name || ' default branch ' || r.default_branch ||
+  name_with_owner || ' default branch ' || (default_branch_ref ->> 'name') ||
   case
-    when b.allow_force_pushes_enabled = 'false' then ' prevents force push.'
-    when b.allow_force_pushes_enabled = 'true' then ' allows force push.'
+    when (default_branch_ref -> 'branch_protection_rule' ->> 'allows_force_pushes') = 'false' then ' prevents force push.'
+    when (default_branch_ref -> 'branch_protection_rule' ->> 'allows_force_pushes') = 'true' then ' allows force push.'
     -- If not false or true, then null, which means no branch protection rule exists
     else ' is not protected.'
   end as reason,
   -- Additional Dimensions
-  r.full_name
+  name_with_owner
 from
-  github_my_repository as r
-  left join github_branch_protection as b on r.full_name = b.repository_full_name and r.default_branch = b.name;
+  github_my_repository;
