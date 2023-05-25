@@ -1,16 +1,16 @@
 with hooks_info as (
   select
-    name,
+    login as name,
     h as hook
   from
-    github_my_organization,
+    github_my_organization_v3,
     jsonb_array_elements(hooks) h
   union
   select
     name,
     h as hook
   from
-    github_my_repository,
+    github_my_repository_v3,
     jsonb_array_elements(hooks) h
 )
 select

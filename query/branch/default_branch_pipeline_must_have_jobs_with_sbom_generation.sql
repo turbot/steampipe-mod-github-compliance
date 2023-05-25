@@ -2,7 +2,7 @@ with repositories as (
   select
     full_name
   from
-    github_my_repository
+    github_my_repository_v3
   order by
     full_name
 ),
@@ -10,8 +10,7 @@ pipelines as (
   select
     name,
     repository_full_name,
-    pipeline,
-    html_url
+    pipeline
   from
     github_workflow
   where

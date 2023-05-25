@@ -2,7 +2,7 @@ with repositories as (
   select
     full_name
   from
-    github_my_repository
+    github_my_repository_v3
   order by
     full_name
 ),

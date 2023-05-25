@@ -2,7 +2,7 @@ with repositories as (
   select
     full_name
   from
-    github_my_repository
+    github_my_repository_v3
   order by
     full_name
 ),
@@ -16,7 +16,7 @@ pipelines as (
   where
     repository_full_name in (select full_name from repositories)
 ),
-bulid_jobs as (
+build_jobs as (
   select distinct
     p.repository_full_name
   from
@@ -40,4 +40,4 @@ select distinct
   r.full_name
 from
   repositories as r
-  left join bulid_jobs as j on r.full_name = j.repository_full_name;
+  left join build_jobs as j on r.full_name = j.repository_full_name;

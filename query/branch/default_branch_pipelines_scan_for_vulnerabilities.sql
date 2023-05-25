@@ -1,9 +1,8 @@
 with repositories as (
   select
-    default_branch,
     full_name
   from
-    github_my_repository
+    github_my_repository_v3
   order by
     full_name
 ),
