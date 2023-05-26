@@ -2,10 +2,16 @@ select
   -- Required Columns
   url as resource,
   case
-    when (default_branch_ref -> 'branch_protection_rule') is not null and (default_branch_ref -> 'branch_protection_rule' ->> 'requires_status_checks')::bool = true then 'ok'
+    when (default_branch_ref -> 'branch_protection_rule') is null then 'info'
+    when (default_branch_ref -> 'branch_protection_rule' ->> 'requires_status_checks')::bool = true then 'ok'
     else 'alarm'
   end as status,
-    name_with_owner || ' default branch ' || (default_branch_ref ->> 'name') || case when((default_branch_ref -> 'branch_protection_rule') is not null and (default_branch_ref -> 'branch_protection_rule' ->> 'requires_status_checks')::bool = true) then ' requires ' else ' does not require ' end || 'status checks.' as reason,
+  name_with_owner || ' default branch ' || (default_branch_ref ->> 'name') || 
+  case 
+    when (default_branch_ref -> 'branch_protection_rule') is not null then ' is not protected, or you have insufficient permissions to see branch protection rules.'
+    when (default_branch_ref -> 'branch_protection_rule' ->> 'requires_status_checks')::bool = true) then ' requires status checks.' 
+    else ' does not require status checks.' 
+  end as reason,
   -- Additional Dimensions
   name_with_owner
 from
