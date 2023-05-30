@@ -1,7 +1,7 @@
 with repo_admins as (
   select distinct
     name_with_owner,
-    json_agg(user_login) as admins
+    array_agg(user_login) as admins
   from 
     github_my_repository r
   join 
