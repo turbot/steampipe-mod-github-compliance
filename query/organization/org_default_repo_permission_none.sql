@@ -13,4 +13,4 @@ select
   -- Additional Dimensions
   login
 from
-  github_my_organization_v3;
+  github_my_organization;
