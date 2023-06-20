@@ -11,7 +11,7 @@ select
       when (default_branch_ref -> 'branch_protection_rule' ->> 'is_admin_enforced') = 'true' then ' protections apply to admins.'
       when (default_branch_ref -> 'branch_protection_rule' ->> 'is_admin_enforced') = 'false' then ' protections do not apply to admins.'
       -- If not false or true, then null, which means no branch protection rule exists
-      else ' is not protected, or you have insufficient permissions to see branch protection rules.'
+      else ' branch protection rule unknown.'
     end as reason,
   -- Additional Dimensions
   name_with_owner
