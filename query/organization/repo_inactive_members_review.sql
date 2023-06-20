@@ -5,20 +5,20 @@ with repo as (
     author_login
   from
     github_commit c
-    join github_my_repository r on c.repository_full_name = r.full_name
+    join github_my_repository r on c.repository_full_name = r.name_with_owner
   where
-    author_date >= now() - interval '30 day'
+    authored_date >= now() - interval '30 day'
   group by
     repository_full_name,
     author_login
 ),
 logins as (
   select
-    c ->> 'login' as login,
-    full_name as repository_full_name
+    c.user_login as login,
+    name_with_owner as repository_full_name
   from
-    github_my_repository,
-    jsonb_array_elements(collaborators) as c
+    github_my_repository
+    join github_repository_collaborator c on c.repository_full_name = name_with_owner
 )
 select
   -- Required Columns

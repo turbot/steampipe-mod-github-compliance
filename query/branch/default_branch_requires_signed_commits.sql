@@ -1,17 +1,18 @@
 select
   -- Required Columns
-  r.full_name as resource,
+  url as resource,
   case
-    when b.signatures_protected_branch_enabled is not null and (b.signatures_protected_branch_enabled)::bool = true then 'ok'
+    when (default_branch_ref -> 'branch_protection_rule') is null then 'info'
+    when (default_branch_ref -> 'branch_protection_rule' ->> 'requires_commit_signatures')::bool = true then 'ok'
     else 'alarm'
   end as status,
-  r.full_name || ' default branch ' || r.default_branch || 
+  name_with_owner || ' default branch ' || (default_branch_ref ->> 'name') || 
   case 
-    when(b.signatures_protected_branch_enabled is not null and (b.signatures_protected_branch_enabled)::bool = true) then ' requires ' 
-    else ' does not require ' 
-  end || 'signed commits before merge.' as reason,
+    when (default_branch_ref -> 'branch_protection_rule') is null then ' is not protected, or you have insufficient permissions to see branch protection rules.'
+    when (default_branch_ref -> 'branch_protection_rule' ->> 'requires_commit_signatures')::bool = true then ' requires signed commits before merge.' 
+    else ' does not require signed commits before merge.' 
+  end as reason,
   -- Additional Dimensions
-  r.full_name
+  name_with_owner
 from
-  github_my_repository as r
-  left join github_branch_protection as b on r.full_name = b.repository_full_name and r.default_branch = b.name;
+  github_my_repository;

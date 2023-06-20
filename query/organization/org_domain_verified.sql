@@ -1,6 +1,6 @@
 select
   -- Required Columns
-  html_url as resource,
+  url as resource,
   case
     when is_verified then 'ok'
     else 'alarm'

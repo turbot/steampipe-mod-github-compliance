@@ -1,6 +1,6 @@
 select
   -- Required Columns
-  html_url as resource,
+  url as resource,
   case
     when two_factor_requirement_enabled is null then 'info' -- info is only available to owners
     when two_factor_requirement_enabled then 'ok'
@@ -14,3 +14,4 @@ select
   login
 from
   github_my_organization;
+

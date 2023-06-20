@@ -1,6 +1,6 @@
 select
   -- Required Columns
-  m.organization as resource,
+  o.url as resource,
   case
     when count(m.login) < 2 then 'alarm'
     else 'ok'
@@ -15,7 +15,8 @@ from
   github_organization_member m
   join github_my_organization o on m.organization = o.login
 where
-  role = 'admin'
+  role = 'ADMIN'
 group by
   role,
-  m.organization;
+  m.organization,
+  o.url;

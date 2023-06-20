@@ -1,6 +1,6 @@
 with hooks_info as (
   select
-    name,
+    login as name,
     h as hook
   from
     github_my_organization,
