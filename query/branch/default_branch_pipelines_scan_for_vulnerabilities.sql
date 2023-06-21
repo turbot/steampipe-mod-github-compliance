@@ -1,11 +1,10 @@
 with repositories as (
   select
-    default_branch,
-    full_name
+    name_with_owner
   from
     github_my_repository
   order by
-    full_name
+    name_with_owner
 ),
 pipelines as (
   select
@@ -15,7 +14,7 @@ pipelines as (
   from
     github_workflow
   where
-    repository_full_name in (select full_name from repositories)
+    repository_full_name in (select name_with_owner from repositories)
 ),
 vulnerability_task_repos as (
   select distinct
@@ -33,7 +32,7 @@ vulnerability_task_repos as (
 )
 select
   -- Required Columns
-  r.full_name as resource,
+  r.name_with_owner as resource,
   case
     when v.repository_full_name is null then 'alarm'
     else 'ok'
@@ -43,7 +42,7 @@ select
     else 'Automated vulnerabilities scanning is set for pipelines.'
   end as reason,
   -- Additional Dimensions
-  r.full_name
+  r.name_with_owner
 from
   repositories as r
-  left join vulnerability_task_repos as v on r.full_name = v.repository_full_name;
+  left join vulnerability_task_repos as v on r.name_with_owner = v.repository_full_name;

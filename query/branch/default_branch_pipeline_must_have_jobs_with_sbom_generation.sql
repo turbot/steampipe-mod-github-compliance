@@ -1,21 +1,20 @@
 with repositories as (
   select
-    full_name
+    name_with_owner
   from
     github_my_repository
   order by
-    full_name
+    name_with_owner
 ),
 pipelines as (
   select
     name,
     repository_full_name,
-    pipeline,
-    html_url
+    pipeline
   from
     github_workflow
   where
-    repository_full_name in (select full_name from repositories)
+    repository_full_name in (select name_with_owner from repositories)
 ),
 build_jobs_sbom_details as (
   select
@@ -85,7 +84,7 @@ pipeline_with_sbom_job_details as (
 )
 select
   -- Required Columns
-  r.full_name as resource,
+  r.name_with_owner as resource,
   case
     when ps.pipeline_without_sbom_jobs > 0 then 'alarm'
     when ps.repository_full_name is null then 'info'
@@ -97,7 +96,7 @@ select
     else 'All pipeline(s) contain a build job with SBOM generation.'
   end as reason,
   -- Additional Dimensions
-  r.full_name
+  r.name_with_owner
 from
   repositories as r
-  left join pipeline_with_sbom_job_details as ps on r.full_name = ps.repository_full_name;
+  left join pipeline_with_sbom_job_details as ps on r.name_with_owner = ps.repository_full_name;

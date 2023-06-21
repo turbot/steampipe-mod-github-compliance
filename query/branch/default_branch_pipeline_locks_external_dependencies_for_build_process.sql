@@ -1,10 +1,10 @@
 with repositories as (
   select
-    full_name
+    name_with_owner
   from
     github_my_repository
   order by
-    full_name
+    name_with_owner
 ),
 pipelines as (
   select
@@ -14,7 +14,7 @@ pipelines as (
   from
     github_workflow
   where
-    repository_full_name in (select full_name from repositories)
+    repository_full_name in (select name_with_owner from repositories)
 ),
 unpinned_task_count as (
   select
@@ -30,7 +30,7 @@ unpinned_task_count as (
 )
 select
   -- Required Columns
-  r.full_name as resource,
+  r.name_with_owner as resource,
   case
     when u.unpinned_task_count > 0 then 'alarm'
     else 'ok'
@@ -41,7 +41,7 @@ select
     else 'All task(s) are pinned.'
   end as reason,
   -- Additional Dimensions
-  r.full_name
+  r.name_with_owner
 from
   repositories as r
-  left join unpinned_task_count as u on r.full_name = u.repository_full_name;
+  left join unpinned_task_count as u on r.name_with_owner = u.repository_full_name;
