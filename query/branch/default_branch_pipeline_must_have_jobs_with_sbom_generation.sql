@@ -1,6 +1,7 @@
 with repositories as (
   select
-    name_with_owner
+    name_with_owner,
+    url
   from
     github_my_repository
   order by
@@ -84,7 +85,7 @@ pipeline_with_sbom_job_details as (
 )
 select
   -- Required Columns
-  r.name_with_owner as resource,
+  r.url as resource,
   case
     when ps.pipeline_without_sbom_jobs > 0 then 'alarm'
     when ps.repository_full_name is null then 'info'

@@ -15,14 +15,15 @@ with repo as (
 logins as (
   select
     c.user_login as login,
-    name_with_owner as repository_full_name
+    name_with_owner as repository_full_name,
+    url
   from
     github_my_repository
     join github_repository_collaborator c on c.repository_full_name = name_with_owner
 )
 select
   -- Required Columns
-  l.repository_full_name as resource,
+  l.url as resource,
   case when commit_count is null then
     'alarm'
   else

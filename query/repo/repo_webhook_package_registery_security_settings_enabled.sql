@@ -1,6 +1,7 @@
 with hooks_info as (
   select
     login as name,
+    url,
     h as hook
   from
     github_my_organization,
@@ -8,6 +9,7 @@ with hooks_info as (
   union
   select
     name,
+    url,
     h as hook
   from
     github_my_repository,
@@ -15,7 +17,7 @@ with hooks_info as (
 )
 select
   -- Required Columns
-  hook -> 'id' as resource,
+  url as resource,
   case
     when (hook ->> 'active' = 'true'
       and (hook -> 'config' ->> 'insecure_ssl' = '1'

@@ -15,7 +15,7 @@ with repo_admins as (
 )
 select
   -- Required Columns
-  r.name_with_owner as resource,
+  r.url as resource,
   case
     when jsonb_array_length(to_jsonb(admins) - $1::text[]) > 0 then 'alarm'
     else 'ok'
