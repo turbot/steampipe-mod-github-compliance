@@ -1,6 +1,7 @@
 with repositories as (
   select
-    name_with_owner
+    name_with_owner,
+    url
   from
     github_my_repository
   order by
@@ -32,7 +33,7 @@ vulnerability_task_repos as (
 )
 select
   -- Required Columns
-  r.name_with_owner as resource,
+  r.url as resource,
   case
     when v.repository_full_name is null then 'alarm'
     else 'ok'

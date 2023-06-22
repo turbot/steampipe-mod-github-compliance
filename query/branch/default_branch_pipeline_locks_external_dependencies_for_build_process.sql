@@ -1,6 +1,7 @@
 with repositories as (
   select
-    name_with_owner
+    name_with_owner,
+    url
   from
     github_my_repository
   order by
@@ -30,7 +31,7 @@ unpinned_task_count as (
 )
 select
   -- Required Columns
-  r.name_with_owner as resource,
+  r.url as resource,
   case
     when u.unpinned_task_count > 0 then 'alarm'
     else 'ok'

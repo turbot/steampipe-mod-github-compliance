@@ -1,6 +1,6 @@
 select
   -- Required Columns
-  m.login as resource,
+  m.url as resource,
   case
     when m.has_two_factor_enabled is null then 'info'
     when m.has_two_factor_enabled then 'ok'
