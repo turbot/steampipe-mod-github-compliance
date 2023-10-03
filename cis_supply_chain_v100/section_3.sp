@@ -41,7 +41,7 @@ benchmark "cis_supply_chain_v100_3_1" {
 control "cis_supply_chain_v100_3_1_7" {
   title         = "3.1.7 Ensure dependencies are pinned to a specific, verified version"
   description   = "Pin dependencies to a specific version. Avoid using the “latest” tag or broad version."
-  sql           = query.default_branch_pipeline_locks_external_dependencies_for_build_process.sql
+  query         = query.default_branch_pipeline_locks_external_dependencies_for_build_process
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_3_1_7.md")
 
   tags = merge(local.cis_supply_chain_v100_3_1_common_tags, {
@@ -67,7 +67,7 @@ benchmark "cis_supply_chain_v100_3_2" {
 control "cis_supply_chain_v100_3_2_2" {
   title         = "3.2.2 Ensure packages are automatically scanned for known vulnerabilities"
   description   = "Automatically scan every package for vulnerabilities."
-  sql           = query.default_branch_pipelines_scan_for_vulnerabilities.sql
+  query         = query.default_branch_pipelines_scan_for_vulnerabilities
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_3_2_2.md")
 
   tags = merge(local.cis_supply_chain_v100_3_1_common_tags, {
@@ -80,7 +80,7 @@ control "cis_supply_chain_v100_3_2_2" {
 control "cis_supply_chain_v100_3_2_3" {
   title         = "3.2.3 Ensure packages are automatically scanned for license implications"
   description   = "A software license is a document that provides legal conditions and guidelines for the use and distribution of software, usually defined by the author. It is recommended to scan for any legal implications automatically."
-  sql           = query.default_branch_pipelines_scan_for_vulnerabilities.sql
+  query         = query.default_branch_pipelines_scan_for_vulnerabilities
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_3_2_3.md")
 
   tags = merge(local.cis_supply_chain_v100_3_1_common_tags, {

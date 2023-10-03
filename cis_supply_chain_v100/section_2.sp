@@ -44,7 +44,7 @@ benchmark "cis_supply_chain_v100_2_3" {
 control "cis_supply_chain_v100_2_3_1" {
   title         = "2.3.1 Ensure all build steps are defined as code"
   description   = "Use pipeline as code for build pipelines and their defined steps."
-  sql           = query.default_branch_all_build_steps_as_code.sql
+  query         = query.default_branch_all_build_steps_as_code
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_2_3_1.md")
 
   tags = merge(local.cis_supply_chain_v100_2_3_common_tags, {
@@ -57,7 +57,7 @@ control "cis_supply_chain_v100_2_3_1" {
 control "cis_supply_chain_v100_2_3_5" {
   title         = "2.3.5 Ensure access to build process triggering is minimized"
   description   = "Restrict access to pipeline triggers."
-  sql           = query.org_default_repo_permission_none_read.sql
+  query         = query.org_default_repo_permission_none_read
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_2_3_5.md")
 
   tags = merge(local.cis_supply_chain_v100_2_3_common_tags, {
@@ -70,7 +70,7 @@ control "cis_supply_chain_v100_2_3_5" {
 control "cis_supply_chain_v100_2_3_7" {
   title         = "2.3.7 Ensure pipelines are automatically scanned for vulnerabilities"
   description   = "Scan pipelines for vulnerabilities. It is recommended that this be implemented automatically."
-  sql           = query.default_branch_pipelines_scan_for_vulnerabilities.sql
+  query         = query.default_branch_pipelines_scan_for_vulnerabilities
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_2_3_7.md")
 
   tags = merge(local.cis_supply_chain_v100_2_3_common_tags, {
@@ -83,7 +83,7 @@ control "cis_supply_chain_v100_2_3_7" {
 control "cis_supply_chain_v100_2_3_8" {
   title         = "2.3.8 Ensure scanners are in place to identify and prevent sensitive data in pipeline files"
   description   = "Detect and prevent sensitive data, such as confidential ID numbers, passwords, etc., inpipelines."
-  sql           = query.default_branch_pipelines_scanners_set_to_prevent_sensitive_data.sql
+  query         = query.default_branch_pipelines_scanners_set_to_prevent_sensitive_data
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_2_3_8.md")
 
   tags = merge(local.cis_supply_chain_v100_2_3_common_tags, {
@@ -109,7 +109,7 @@ benchmark "cis_supply_chain_v100_2_4" {
 control "cis_supply_chain_v100_2_4_2" {
   title         = "2.4.2 Ensure all external dependencies used in the build process are locked"
   description   = "External dependencies may be public packages needed in the pipeline, or perhaps the public image being used for the build worker. Lock these external dependencies in every build pipeline."
-  sql           = query.default_branch_pipeline_locks_external_dependencies_for_build_process.sql
+  query         = query.default_branch_pipeline_locks_external_dependencies_for_build_process
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_2_4_2.md")
 
   tags = merge(local.cis_supply_chain_v100_2_4_common_tags, {
@@ -122,7 +122,7 @@ control "cis_supply_chain_v100_2_4_2" {
 control "cis_supply_chain_v100_2_4_6" {
   title         = "2.4.6 Ensure pipeline steps sign the SBOM produced"
   description   = "An SBOM is a file that specifies each component of software or a build process. It should be generated after every pipeline run. After it is generated, it must then be signed."
-  sql           = query.default_branch_pipeline_must_have_jobs_with_sbom_generation.sql
+  query         = query.default_branch_pipeline_must_have_jobs_with_sbom_generation
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_2_4_6.md")
 
   tags = merge(local.cis_supply_chain_v100_2_4_common_tags, {
