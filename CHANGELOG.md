@@ -1,3 +1,9 @@
+## v0.5 [2023-10-03]
+
+_Enhancements_
+
+- Updated all queries to use `url` as the resource column. ([#35](https://github.com/turbot/steampipe-mod-github-compliance/pull/35))
+
 ## v0.4 [2023-06-21]
 
 _What's new?_
