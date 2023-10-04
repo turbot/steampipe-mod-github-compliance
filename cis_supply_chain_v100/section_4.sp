@@ -44,7 +44,7 @@ benchmark "cis_supply_chain_v100_4_2" {
 control "cis_supply_chain_v100_4_2_3" {
   title         = "4.2.3 Ensure user access to the package registry utilizes Multi-Factor Authentication (MFA)"
   description   = "Enforce Multi-Factor Authentication (MFA) for user access to the package registry."
-  sql           = query.org_two_factor_required.sql
+  query         = query.org_two_factor_required
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_4_2_3.md")
 
   tags = merge(local.cis_supply_chain_v100_4_2_common_tags, {
@@ -69,7 +69,7 @@ benchmark "cis_supply_chain_v100_4_3" {
 control "cis_supply_chain_v100_4_3_4" {
   title         = "4.3.4 Ensure webhooks of the package registry are secured"
   description   = "Use secured webhooks of the package registry."
-  sql           = query.repo_webhook_package_registery_security_settings_enabled.sql
+  query         = query.repo_webhook_package_registery_security_settings_enabled
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_4_3_4.md")
 
   tags = merge(local.cis_supply_chain_v100_4_3_common_tags, {
