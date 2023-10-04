@@ -2,7 +2,17 @@
 
 _Enhancements_
 
-- Updated all queries to use `url` as the resource column. ([#35](https://github.com/turbot/steampipe-mod-github-compliance/pull/35))
+- Updated the following queries to use `url` as the resource column: ([#35](https://github.com/turbot/steampipe-mod-github-compliance/pull/35))
+  - `default_branch_all_build_steps_as_code`
+  - `default_branch_pipeline_locks_external_dependencies_for_build_process`
+  - `default_branch_pipeline_must_have_jobs_with_sbom_generation`
+  - `default_branch_pipelines_scan_for_vulnerabilities`
+  - `default_branch_pipelines_scanners_set_to_prevent_sensitive_data`
+  - `org_member_mfa_enabled`
+  - `repo_inactive_members_review`
+  - `repo_deletion_limited_to_trusted_users`
+  - `repo_issue_deletion_limited_to_trusted_users`
+  - `repo_webhook_package_registery_security_settings_enabled`
 
 ## v0.4 [2023-06-21]
 
