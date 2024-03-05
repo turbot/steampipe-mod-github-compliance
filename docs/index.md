@@ -2,16 +2,16 @@
 
 Run security controls across all your GitHub organizations and repositories to look for branch protection rules, organization member privileges, security settings, and more.
 
-<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/main/docs/images/github_compliance_dashboard_cis.png" width="50%" type="thumbnail"/>
-<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/main/docs/images/github_compliance_dashboard.png" width="50%" type="thumbnail"/>
-<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/main/docs/images/github_compliance_cis_benchmark_dashbopard.png" width="50%" type="thumbnail"/>
-<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/main/docs/images/github_compliance_console.png" width="50%" type="thumbnail"/>
+<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/add-new-checks/docs/images/github_compliance_dashboard_cis.png" width="50%" type="thumbnail"/>
+<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/add-new-checks/docs/images/github_compliance_dashboard.png" width="50%" type="thumbnail"/>
+<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/add-new-checks/docs/images/github_compliance_cis_benchmark_dashbopard.png" width="50%" type="thumbnail"/>
+<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/add-new-checks/docs/images/github_compliance_console.png" width="50%" type="thumbnail"/>
 
 
 ## Documentation
 
-- **[Benchmarks and controls →](https://hub.powerpipe.io/mods/turbot/github_compliance/controls)**
-- **[Named queries →](https://hub.powerpipe.io/mods/turbot/github_compliance/queries)**
+- **[Benchmarks and controls →](https://hub-powerpipe-io-git-development-turbot.vercel.app/mods/turbot/github_compliance/controls)**
+- **[Named queries →](https://hub-powerpipe-io-git-development-turbot.vercel.app/mods/turbot/github_compliance/queries)**
 
 ## Getting started
 
@@ -38,7 +38,7 @@ Finally, install the mod:
 mkdir dashboards
 cd dashboards
 powerpipe mod init
-powerpipe mod install github.com/turbot/powerpipe-mod-github-compliance
+powerpipe mod install github.com/turbot/steampipe-mod-github-compliance
 ```
 
 ### Browsing Dashboards
@@ -55,7 +55,7 @@ Start the dashboard server:
 powerpipe server
 ```
 
-Browse and view your dashboards at **https://localhost:9033**.
+Browse and view your dashboards at **http://localhost:9033**.
 
 ### Running Checks in Your Terminal
 
@@ -79,7 +79,7 @@ Different output formats are also available, for more information please see
 
 ### Common and Tag Dimensions
 
-The benchmark queries use common properties and tags that are defined in the form of a default list of strings in the `mod.sp` file. These properties can be overwritten in several ways:
+The benchmark queries use common properties and tags that are defined in the form of a default list of strings in the `variables.sp` file. These properties can be overwritten in several ways:
 
 It's easiest to setup your vars file, starting with the sample:
 
@@ -97,7 +97,7 @@ powerpipe benchmark run github_compliance.benchmark.cis_supply_chain_v100 --var 
 Or through environment variables:
 
 ```sh
-export PP_VAR_trusted_repo_admins='["account_id", "connection_name", "region"]'
+export PP_VAR_trusted_repo_admins='["user_1", "user_2"]'
 powerpipe benchmark run github_compliance.benchmark.cis_supply_chain_v100
 ```
 
