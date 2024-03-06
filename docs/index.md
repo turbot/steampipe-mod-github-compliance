@@ -1,123 +1,116 @@
----
-repository: "https://github.com/turbot/steampipe-mod-github-compliance"
----
-
 # GitHub Compliance Mod
 
 Run security controls across all your GitHub organizations and repositories to look for branch protection rules, organization member privileges, security settings, and more.
 
-<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/main/docs/images/github_compliance_cis_v100_dashboard.png" width="50%" type="thumbnail"/>
+<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/main/docs/images/github_compliance_dashboard_cis.png" width="50%" type="thumbnail"/>
 <img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/main/docs/images/github_compliance_dashboard.png" width="50%" type="thumbnail"/>
-<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/main/docs/images/github_compliance_benchmark.png" width="50%" type="thumbnail"/>
-<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/main/docs/images/github_cis_v100_terminal.png" width="50%" type="thumbnail"/>
-
-## References
-
-[GitHub](https://github.com/) is a provider of Internet hosting for software development and version control using Git.
-
-[Steampipe](https://steampipe.io) is an open source CLI to instantly query cloud APIs using SQL.
-
-[Steampipe Mods](https://steampipe.io/docs/reference/mod-resources#mod) are collections of `named queries`, and codified `controls` that can be used to test current configuration of your cloud resources against a desired configuration.
+<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/main/docs/images/github_compliance_cis_benchmark_dashbopard.png" width="50%" type="thumbnail"/>
+<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/main/docs/images/github_compliance_console.png" width="50%" type="thumbnail"/>
 
 ## Documentation
 
-- **[Benchmarks and controls →](https://hub.steampipe.io/mods/turbot/github_compliance/controls)**
-- **[Named queries →](https://hub.steampipe.io/mods/turbot/github_compliance/queries)**
+- **[Benchmarks and controls →](https://hub.powerpipe.io/mods/turbot/github_compliance/controls)**
+- **[Named queries →](https://hub.powerpipe.io/mods/turbot/github_compliance/queries)**
 
-## Getting started
+## Getting Started
 
 ### Installation
 
-Download and install Steampipe (https://steampipe.io/downloads). Or use Brew:
+Install Powerpipe (https://powerpipe.io/downloads), or use Brew:
 
 ```sh
-brew tap turbot/tap
-brew install steampipe
+brew install turbot/tap/powerpipe
 ```
 
-Install the GitHub plugin with [Steampipe](https://steampipe.io):
+This mod also requires [Steampipe](https://steampipe.io) with the [Github plugin](https://hub.steampipe.io/plugins/turbot/github) as the data source. Install Steampipe (https://steampipe.io/downloads), or use Brew:
 
 ```sh
+brew install turbot/tap/steampipe
 steampipe plugin install github
 ```
 
-Clone:
+Finally, install the mod:
 
 ```sh
-git clone https://github.com/turbot/steampipe-mod-github-compliance.git
-cd steampipe-mod-github-compliance
+mkdir dashboards
+cd dashboards
+powerpipe mod init
+powerpipe mod install github.com/turbot/steampipe-mod-github-compliance
 ```
 
-### Usage
+### Browsing Dashboards
 
-Start your dashboard server to get started:
+Start Steampipe as the data source:
 
 ```sh
-steampipe dashboard
+steampipe service start
 ```
 
-By default, the dashboard interface will then be launched in a new browser
-window at http://localhost:9194. From here, you can run benchmarks by
-selecting one or searching for a specific one.
+Start the dashboard server:
+
+```sh
+powerpipe server
+```
+
+Browse and view your dashboards at **http://localhost:9033**.
+
+### Running Checks in Your Terminal
 
 Instead of running benchmarks in a dashboard, you can also run them within your
-terminal with the `steampipe check` command:
+terminal with the `powerpipe benchmark` command:
 
-Run all benchmarks:
+List available benchmarks:
 
 ```sh
-steampipe check all
+powerpipe benchmark list
 ```
 
-Run a single benchmark:
+Run a benchmark:
 
 ```sh
-steampipe check benchmark.cis_supply_chain_v100
-```
-
-Run a specific control:
-
-```sh
-steampipe check control.cis_supply_chain_v100_1_1_3
+powerpipe benchmark run github_compliance.benchmark.cis_supply_chain_v100
 ```
 
 Different output formats are also available, for more information please see
-[Output Formats](https://steampipe.io/docs/reference/cli/check#output-formats).
+[Output Formats](https://powerpipe.io/docs/reference/cli/benchmark#output-formats).
 
-### Credentials
+### Configure Variables
 
-This mod uses the credentials configured in the [Steampipe GitHub plugin](https://hub.steampipe.io/plugins/turbot/github).
+Several benchmarks have [input variables](https://powerpipe.io/docs/build/mod-variables#input-variables) that can be configured to better match your environment and requirements. Each variable has a default defined in its source file, e.g., `cis_supply_chain_v100/section_1.sp`, but these can be overwritten in several ways:
 
-### Configuration
+It's easiest to setup your vars file, starting with the sample:
 
-Few benchmarks have [input variables](https://steampipe.io/docs/using-steampipe/mod-variables) that can be configured to better match your environment and requirements. Each variable has a default defined in its source file, e.g., `cis_supply_chain_v100/section_1.sp`, but these can be overwritten in several ways:
+```sh
+cp steampipe.spvars.example steampipe.spvars
+vi steampipe.spvars
+```
 
-- Copy and rename the `steampipe.spvars.example` file to `steampipe.spvars`, and then modify the variable values inside that file
-- Pass in a value on the command line:
+Alternatively you can pass variables on the command line:
 
-  ```shell
-  steampipe check control.cis_supply_chain_v100_1_2_3 --var='trusted_repo_admins=["user_1", "user_2"]'
-  ```
+```sh
+powerpipe benchmark run github_compliance.benchmark.cis_supply_chain_v100 --var 'trusted_repo_admins=["user_1", "user_2"]'
+```
 
-- Set an environment variable:
+Or through environment variables:
 
-  ```shell
-  SP_VAR_trusted_repo_admins='["user_1", "user_2"]' steampipe check control.cis_supply_chain_v100_1_2_3
-  ```
+```sh
+export PP_VAR_trusted_repo_admins='["user_1", "user_2"]'
+powerpipe benchmark run github_compliance.benchmark.cis_supply_chain_v100
+```
 
-  - Note: When using environment variables, if the variable is defined in `steampipe.spvars` or passed in through the command line, either of those will take precedence over the environment variable value. For more information on variable definition precedence, please see the link below.
+These are only some of the ways you can set variables. For a full list, please see [Passing Input Variables](https://powerpipe.io/docs/build/mod-variables#passing-input-variables).
 
-These are only some of the ways you can set variables. For a full list, please see [Passing Input Variables](https://steampipe.io/docs/using-steampipe/mod-variables#passing-input-variables).
+## Open Source & Contributing
 
-## Contributing
+This repository is published under the [Apache 2.0 license](https://www.apache.org/licenses/LICENSE-2.0). Please see our [code of conduct](https://github.com/turbot/.github/blob/main/CODE_OF_CONDUCT.md). We look forward to collaborating with you!
 
-If you have an idea for additional controls or just want to help maintain and extend this mod ([or others](https://github.com/topics/steampipe-mod)) we would love you to join the community and start contributing.
+[Steampipe](https://steampipe.io) and [Powerpipe](https://powerpipe.io) are products produced from this open source software, exclusively by [Turbot HQ, Inc](https://turbot.com). They are distributed under our commercial terms. Others are allowed to make their own distribution of the software, but cannot use any of the Turbot trademarks, cloud services, etc. You can learn more in our [Open Source FAQ](https://turbot.com/open-source).
 
-- **[Join #steampipe on Slack →](https://turbot.com/community/join)** and hang out with other Mod developers.
+## Get Involved
 
-Please see the [contribution guidelines](https://github.com/turbot/steampipe/blob/main/CONTRIBUTING.md) and our [code of conduct](https://github.com/turbot/steampipe/blob/main/CODE_OF_CONDUCT.md). All contributions are subject to the [Apache 2.0 open source license](https://github.com/turbot/steampipe-mod-github-compliance/blob/main/LICENSE).
+**[Join #powerpipe on Slack →](https://turbot.com/community/join)**
 
-Want to help but not sure where to start? Pick up one of the `help wanted` issues:
+Want to help but don't know where to start? Pick up one of the `help wanted` issues:
 
-- [Steampipe](https://github.com/turbot/steampipe/labels/help%20wanted)
+- [Powerpipe](https://github.com/turbot/powerpipe/labels/help%20wanted)
 - [GitHub Compliance Mod](https://github.com/turbot/steampipe-mod-github-compliance/labels/help%20wanted)
