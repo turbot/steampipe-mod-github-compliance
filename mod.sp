@@ -1,5 +1,5 @@
 mod "github_compliance" {
-  # hub metadata
+  # Hub metadata
   title         = "GitHub Compliance"
   description   = "Run individual configuration, compliance and security controls or full compliance benchmarks for GitHub across your repositories and organizations using Powerpipe and Steampipe."
   color         = "#191717"

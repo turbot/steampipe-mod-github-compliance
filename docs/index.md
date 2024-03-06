@@ -2,18 +2,17 @@
 
 Run security controls across all your GitHub organizations and repositories to look for branch protection rules, organization member privileges, security settings, and more.
 
-<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/add-new-checks/docs/images/github_compliance_dashboard_cis.png" width="50%" type="thumbnail"/>
-<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/add-new-checks/docs/images/github_compliance_dashboard.png" width="50%" type="thumbnail"/>
-<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/add-new-checks/docs/images/github_compliance_cis_benchmark_dashbopard.png" width="50%" type="thumbnail"/>
-<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/add-new-checks/docs/images/github_compliance_console.png" width="50%" type="thumbnail"/>
-
+<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/main/docs/images/github_compliance_dashboard_cis.png" width="50%" type="thumbnail"/>
+<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/main/docs/images/github_compliance_dashboard.png" width="50%" type="thumbnail"/>
+<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/main/docs/images/github_compliance_cis_benchmark_dashbopard.png" width="50%" type="thumbnail"/>
+<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-github-compliance/main/docs/images/github_compliance_console.png" width="50%" type="thumbnail"/>
 
 ## Documentation
 
-- **[Benchmarks and controls →](https://hub-powerpipe-io-git-development-turbot.vercel.app/mods/turbot/github_compliance/controls)**
-- **[Named queries →](https://hub-powerpipe-io-git-development-turbot.vercel.app/mods/turbot/github_compliance/queries)**
+- **[Benchmarks and controls →](https://hub.powerpipe.io/mods/turbot/github_compliance/controls)**
+- **[Named queries →](https://hub.powerpipe.io/mods/turbot/github_compliance/queries)**
 
-## Getting started
+## Getting Started
 
 ### Installation
 
@@ -29,8 +28,6 @@ This mod also requires [Steampipe](https://steampipe.io) with the [Github plugin
 brew install turbot/tap/steampipe
 steampipe plugin install github
 ```
-
-This mod uses the credentials configured in the [GitHub plugin credential](https://hub.steampipe.io/plugins/turbot/github#credentials).
 
 Finally, install the mod:
 
@@ -77,15 +74,15 @@ powerpipe benchmark run github_compliance.benchmark.cis_supply_chain_v100
 Different output formats are also available, for more information please see
 [Output Formats](https://powerpipe.io/docs/reference/cli/benchmark#output-formats).
 
-### Common and Tag Dimensions
+### Configure Variables
 
-The benchmark queries use common properties and tags that are defined in the form of a default list of strings in the `variables.sp` file. These properties can be overwritten in several ways:
+Several benchmarks have [input variables](https://powerpipe.io/docs/build/mod-variables#input-variables) that can be configured to better match your environment and requirements. Each variable has a default defined in its source file, e.g., `cis_supply_chain_v100/section_1.sp`, but these can be overwritten in several ways:
 
 It's easiest to setup your vars file, starting with the sample:
 
 ```sh
-cp powerpipe.ppvar.example powerpipe.ppvars
-vi powerpipe.ppvars
+cp steampipe.spvars.example steampipe.spvars
+vi steampipe.spvars
 ```
 
 Alternatively you can pass variables on the command line:
@@ -100,6 +97,8 @@ Or through environment variables:
 export PP_VAR_trusted_repo_admins='["user_1", "user_2"]'
 powerpipe benchmark run github_compliance.benchmark.cis_supply_chain_v100
 ```
+
+These are only some of the ways you can set variables. For a full list, please see [Passing Input Variables](https://powerpipe.io/docs/build/mod-variables#passing-input-variables).
 
 ## Open Source & Contributing
 
