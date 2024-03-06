@@ -1,7 +1,9 @@
 # GitHub Compliance Mod for Powerpipe
 
-> [!IMPORTANT]
-> Steampipe mods are [migrating to Powerpipe format](https://powerpipe.io) to gain new features. This mod currently works with both Steampipe and Powerpipe, but will only support Powerpipe from v1.x onward.
+> [!IMPORTANT]  
+> [Powerpipe](https://powerpipe.io) is now the preferred way to run this mod! [Migrating from Steampipe →](https://powerpipe.io/blog/migrating-from-steampipe)
+>
+> All v0.x versions of this mod will work in both Steampipe and Powerpipe, but v1.0.0 onwards will be in Powerpipe format only.
 
 30+ checks covering industry defined security best practices for GitHub.
 
