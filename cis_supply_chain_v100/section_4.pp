@@ -51,6 +51,7 @@ control "cis_supply_chain_v100_4_2_3" {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
     cis_type              = "manual"
+    service               = "GitHub/Organization"
   })
 }
 
@@ -76,5 +77,6 @@ control "cis_supply_chain_v100_4_3_4" {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
     cis_type              = "manual"
+    service               = "GitHub/Repository"
   })
 }
