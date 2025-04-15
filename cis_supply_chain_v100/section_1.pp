@@ -19,9 +19,11 @@ locals {
 locals {
   cis_supply_chain_v100_1_1_common_tags = merge(local.cis_supply_chain_v100_1_common_tags, {
     cis_section_id = "1.1"
+    service        = "GitHub/Branch"
   })
   cis_supply_chain_v100_1_2_common_tags = merge(local.cis_supply_chain_v100_1_common_tags, {
     cis_section_id = "1.2"
+    service        = "GitHub/Repository"
   })
   cis_supply_chain_v100_1_3_common_tags = merge(local.cis_supply_chain_v100_1_common_tags, {
     cis_section_id = "1.3"
@@ -354,6 +356,7 @@ control "cis_supply_chain_v100_1_3_1" {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
     cis_type              = "manual"
+    service               = "GitHub/Repository"
   })
 }
 
@@ -367,6 +370,7 @@ control "cis_supply_chain_v100_1_3_3" {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
     cis_type              = "automated"
+    service               = "GitHub/Organization"
   })
 }
 
@@ -380,6 +384,7 @@ control "cis_supply_chain_v100_1_3_5" {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
     cis_type              = "automated"
+    service               = "GitHub/Organization"
   })
 }
 
@@ -393,6 +398,7 @@ control "cis_supply_chain_v100_1_3_7" {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
     cis_type              = "automated"
+    service               = "GitHub/Repository"
   })
 }
 
@@ -406,6 +412,7 @@ control "cis_supply_chain_v100_1_3_8" {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
     cis_type              = "automated"
+    service               = "GitHub/Organization"
   })
 }
 
@@ -419,5 +426,6 @@ control "cis_supply_chain_v100_1_3_9" {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
     cis_type              = "automated"
+    service               = "GitHub/Organization"
   })
 }

@@ -1,3 +1,9 @@
+## v1.1.0 [2025-04-15]
+
+_Enhancements_
+
+- Added service tags such as `GitHub/Organization`, `GitHub/Repository`, and others to relevant controls for improved organization and filtering. ([#53](https://github.com/turbot/steampipe-mod-github-compliance/pull/53))
+
 ## v1.0.1 [2024-10-24]
 
 _Bug fixes_
