@@ -51,6 +51,7 @@ control "cis_supply_chain_v100_2_3_1" {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
     cis_type              = "automated"
+    service               = "GitHub/Branch"
   })
 }
 
@@ -64,6 +65,7 @@ control "cis_supply_chain_v100_2_3_5" {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
     cis_type              = "automated"
+    service               = "GitHub/Organization"
   })
 }
 
@@ -77,6 +79,7 @@ control "cis_supply_chain_v100_2_3_7" {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
     cis_type              = "automated"
+    service               = "GitHub/Branch"
   })
 }
 
@@ -90,6 +93,7 @@ control "cis_supply_chain_v100_2_3_8" {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
     cis_type              = "automated"
+    service               = "GitHub/Branch"
   })
 }
 
@@ -116,6 +120,7 @@ control "cis_supply_chain_v100_2_4_2" {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
     cis_type              = "automated"
+    service               = "GitHub/Branch"
   })
 }
 
@@ -129,5 +134,6 @@ control "cis_supply_chain_v100_2_4_6" {
     cis                   = "true"
     cis_supply_chain_v100 = "true"
     cis_type              = "automated"
+    service               = "GitHub/Branch"
   })
 }
