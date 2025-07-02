@@ -284,7 +284,45 @@ control "cis_supply_chain_v100_1_2_3" {
   title         = "1.2.3 Ensure repository deletion is limited to specific users"
   description   = "Ensure only a limited number of trusted users can delete repositories."
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_2_3.md")
-  query         = query.repo_deletion_limited_to_trusted_users
+
+  sql = <<-EOQ
+    with repo_admins as (
+      select distinct
+        name_with_owner,
+        array_agg(user_login) as admins
+      from
+        github_my_repository r
+      join
+        github_repository_collaborator c
+      on
+        r.name_with_owner = c.repository_full_name
+      and
+        c.permission = 'ADMIN'
+      group by
+        name_with_owner
+    )
+    select
+      -- Required Columns
+      r.url as resource,
+      case
+        when jsonb_array_length(to_jsonb(admins) - $1::text[]) > 0 then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when jsonb_array_length(to_jsonb(admins) - $1::text[]) > 2
+          then concat( 'Repository deletion permission allowed to untrusted users ', to_jsonb(admins) - $1::text[] #>> '{0}', ', ', to_jsonb(admins) - $1::text[] #>> '{1}', ' and ', (jsonb_array_length(to_jsonb(admins) - $1::text[]) - 2)::text, ' more.')
+        when jsonb_array_length(to_jsonb(admins) - $1::text[]) = 2
+          then concat('Repository deletion permission allowed to untrusted users ', to_jsonb(admins) - $1::text[] #>> '{0}', ' and ', to_jsonb(admins) - $1::text[] #>> '{1}', '.')
+        when jsonb_array_length(to_jsonb(admins) - $1::text[]) = 1
+          then concat('Repository deletion permission allowed to untrusted user ', to_jsonb(admins) - $1::text[] #>> '{0}', '.')
+        else 'Repository deletion permission limited to trusted users.'
+      end as reason,
+      -- Additional Dimensions
+      r.name_with_owner
+    from
+      github_my_repository as r
+      left join repo_admins as a on r.name_with_owner = a.name_with_owner;
+  EOQ
 
   param "trusted_repo_admins" {
     description = "A list of GitHub users allowed to delete repositories."
@@ -301,8 +339,46 @@ control "cis_supply_chain_v100_1_2_3" {
 control "cis_supply_chain_v100_1_2_4" {
   title         = "1.2.4 Ensure issue deletion is limited to specific users"
   description   = "Ensure only trusted and responsible users can delete issues."
-  query         = query.repo_issue_deletion_limited_to_trusted_users
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_2_4.md")
+
+  sql = <<-EOQ
+    with repo_admins as (
+      select distinct
+        name_with_owner,
+        array_agg(user_login) as admins
+      from
+        github_my_repository r
+      join
+        github_repository_collaborator c
+      on
+        r.name_with_owner = c.repository_full_name
+      and
+        c.permission = 'ADMIN'
+      group by
+        name_with_owner
+    )
+    select
+      -- Required Columns
+      r.url as resource,
+      case
+        when jsonb_array_length(to_jsonb(admins) - $1::text[]) > 0 then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when jsonb_array_length(to_jsonb(admins) - $1::text[]) > 2
+          then concat( 'Repository issue deletion permission allowed to untrusted users ', to_jsonb(admins) - $1::text[] #>> '{0}', ', ', to_jsonb(admins) - $1::text[] #>> '{1}', ' and ', (jsonb_array_length(to_jsonb(admins) - $1::text[]) - 2)::text, ' more.')
+        when jsonb_array_length(to_jsonb(admins) - $1::text[]) = 2
+          then concat('Repository issue deletion permission allowed to untrusted users ', to_jsonb(admins) - $1::text[] #>> '{0}', ' and ', to_jsonb(admins) - $1::text[] #>> '{1}', '.')
+        when jsonb_array_length(to_jsonb(admins) - $1::text[]) = 1
+          then concat('Repository issue deletion permission allowed to untrusted user ', to_jsonb(admins) - $1::text[] #>> '{0}', '.')
+        else 'Repository issue deletion permission limited to trusted users.'
+      end as reason,
+      -- Additional Dimensions
+      r.name_with_owner
+    from
+      github_my_repository as r
+      left join repo_admins as a on r.name_with_owner = a.name_with_owner;
+  EOQ
 
   param "trusted_issue_admins" {
     description = "A list of GitHub users allowed to delete issues."
