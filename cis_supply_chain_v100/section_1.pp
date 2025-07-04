@@ -1,15 +1,3 @@
-variable "trusted_repo_admins" {
-  type        = list(string)
-  default     = [""]
-  description = "A list of github users allowed to delete the repository."
-}
-
-variable "trusted_issue_admins" {
-  type        = list(string)
-  default     = [""]
-  description = "A list of github users allowed to delete the issue."
-}
-
 locals {
   cis_supply_chain_v100_1_common_tags = merge(local.cis_supply_chain_v100_common_tags, {
     cis_section_id = "1"
@@ -283,13 +271,8 @@ control "cis_supply_chain_v100_1_2_2" {
 control "cis_supply_chain_v100_1_2_3" {
   title         = "1.2.3 Ensure repository deletion is limited to specific users"
   description   = "Ensure only a limited number of trusted users can delete repositories."
-  documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_2_3.md")
   query         = query.repo_deletion_limited_to_trusted_users
-
-  param "trusted_repo_admins" {
-    description = "A list of GitHub users allowed to delete repositories."
-    default     = var.trusted_repo_admins
-  }
+  documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_2_3.md")
 
   tags = merge(local.cis_supply_chain_v100_1_2_common_tags, {
     cis                   = "true"
@@ -304,10 +287,6 @@ control "cis_supply_chain_v100_1_2_4" {
   query         = query.repo_issue_deletion_limited_to_trusted_users
   documentation = file("./cis_supply_chain_v100/docs/cis_supply_chain_v100_1_2_4.md")
 
-  param "trusted_issue_admins" {
-    description = "A list of GitHub users allowed to delete issues."
-    default     = var.trusted_issue_admins
-  }
 
   tags = merge(local.cis_supply_chain_v100_1_2_common_tags, {
     cis                   = "true"
