@@ -1,3 +1,9 @@
+## v1.1.1 [2025-07-04]
+
+_Bug fixes_
+
+- Fixed `repo_deletion_limited_to_trusted_users` and `repo_issue_deletion_limited_to_trusted_users` queries to correctly return data instead of an error. ([#56](https://github.com/turbot/steampipe-mod-github-compliance/pull/56))
+
 ## v1.1.0 [2025-04-15]
 
 _Enhancements_
